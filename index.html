@@ -18,8 +18,8 @@
         <nav class="nav__links" aria-label="Primary">
           <a href="#research">Research</a>
           <a href="#approach">Our Approach</a>
-          <a href="#publications">Publications</a>
-          <a href="#about">About</a>
+          <a href="#research">Publications</a>
+          <a href="#mission">About</a>
           <a href="#connect">Careers</a>
         </nav>
         <a class="nav__cta" href="#connect">Get in touch <svg class="arrow" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 7.5 7.5 2.5M3.25 2.5H7.5V6.75" /></svg></a>
@@ -47,98 +47,96 @@
       <!-- 01 — MISSION -->
       <section class="sec sec--mission" id="mission" aria-labelledby="mission-title">
         <div class="sec__head" data-reveal="rule">
-          <p class="label"><span class="label__num">01</span> / WHY WE EXIST</p>
+          <p class="label"><span class="label__num">01</span> / MISSION</p>
         </div>
-        <div class="mission grid">
-          <h2 class="display-xl mission__title" id="mission-title" data-reveal>Progress means understanding what we build.</h2>
-          <div class="mission__body" data-reveal>
-            <p class="lead">Artificial intelligence is advancing rapidly. But capability alone is not enough. To build systems we can rely on, we need to understand how they learn, how they reason, and how they behave when the world does not match our expectations.</p>
-            <p class="body">NEXUS studies the foundations of machine intelligence with a focus on making AI systems more understandable, robust, and aligned with human intentions.</p>
-            <p class="body">We believe meaningful progress requires more than building increasingly capable systems. It requires the scientific tools to investigate them, the discipline to evaluate their limits, and the openness to question what we think we know.</p>
-          </div>
+        <div class="mission">
+          <span class="mission__tick" aria-hidden="true"></span>
+          <h2 class="display-xl mission__title" id="mission-title" data-reveal><span class="line">Intelligence is advancing.</span> <span class="line">Understanding must keep pace.</span></h2>
+          <p class="support mission__text" data-reveal>We study how AI systems learn, reason, and behave. Our goal is to make increasingly capable systems more understandable and reliable.</p>
         </div>
       </section>
 
-      <!-- 02 — RESEARCH AREAS -->
+      <!-- 02 — RESEARCH -->
       <section class="sec sec--research" id="research" aria-labelledby="research-title">
         <div class="sec__head" data-reveal="rule">
           <p class="label"><span class="label__num">02</span> / RESEARCH</p>
         </div>
         <div class="sec-intro grid">
           <h2 class="display-l sec-intro__title" id="research-title" data-reveal>Four perspectives. One underlying question.</h2>
-          <p class="body sec-intro__text" data-reveal>We investigate the mechanisms behind intelligent systems and the conditions required to make them reliable. Our work spans the foundations of learning, the evaluation of model behavior, and the challenge of understanding what happens inside increasingly capable systems.</p>
+          <p class="support sec-intro__text" data-reveal>Understanding intelligence means investigating both what AI can do and how it works.</p>
         </div>
         <ol class="areas" role="list">
-          <li class="area area--wide" data-reveal>
-            <div class="area__meta"><span class="area__num">01</span><span class="tags">Robustness / Evaluation / Reliability</span></div>
+          <li class="area area--lead" data-reveal>
+            <span class="area__num">01</span>
             <figure class="specimen" data-specimen="shift">
               <canvas aria-hidden="true"></canvas>
-              <figcaption class="caption">FIG. 1 — Inputs drifting away from the conditions a model was evaluated on. Conceptual.</figcaption>
+              <figcaption class="caption">Fig. 01 — Conceptual</figcaption>
             </figure>
-            <h3 class="title">AI Safety &amp; Reliability</h3>
-            <p class="body">Understanding when AI systems fail, why they fail, and how to make their behavior more dependable. We investigate robustness, evaluation, uncertainty, and the gap between performance in controlled settings and behavior in the real world.</p>
+            <div class="area__text">
+              <h3 class="title">AI Safety &amp; Reliability</h3>
+              <p class="body">Understanding failure, improving robustness, and evaluating how AI behaves beyond controlled conditions.</p>
+            </div>
           </li>
-          <li class="area" data-reveal>
-            <div class="area__meta"><span class="area__num">02</span><span class="tags">Learning / Representations / Generalization</span></div>
+          <li class="area area--side" data-reveal>
+            <span class="area__num">02</span>
             <figure class="specimen" data-specimen="emerge">
               <canvas aria-hidden="true"></canvas>
-              <figcaption class="caption">FIG. 2 — Structure forming from unorganized signal. Conceptual.</figcaption>
+              <figcaption class="caption">Fig. 02 — Conceptual</figcaption>
             </figure>
-            <h3 class="title">Foundations of Machine Intelligence</h3>
-            <p class="body">Studying the mechanisms that allow models to learn, represent information, reason, and generalize. We seek a deeper account of the capabilities that emerge during training and the principles that govern them.</p>
+            <div class="area__text">
+              <h3 class="title">Machine Intelligence</h3>
+              <p class="body">Investigating how models learn, reason, form representations, and generalize.</p>
+            </div>
           </li>
-          <li class="area" data-reveal>
-            <div class="area__meta"><span class="area__num">03</span><span class="tags">Interpretability / Alignment / Model Behavior</span></div>
+          <li class="area area--side" data-reveal>
+            <span class="area__num">03</span>
             <figure class="specimen" data-specimen="probe">
               <canvas aria-hidden="true"></canvas>
-              <figcaption class="caption">FIG. 3 — Relating internal activity to observable output. Conceptual.</figcaption>
+              <figcaption class="caption">Fig. 03 — Conceptual</figcaption>
             </figure>
-            <h3 class="title">Alignment &amp; Interpretability</h3>
-            <p class="body">Investigating how a model’s internal processes relate to its observable behavior and intended objectives. We explore ways to make model behavior more legible and to better understand where its actions may diverge from human intentions.</p>
+            <div class="area__text">
+              <h3 class="title">Alignment &amp; Interpretability</h3>
+              <p class="body">Exploring how models work internally and whether their behavior reflects intended objectives.</p>
+            </div>
           </li>
           <li class="area area--wide" data-reveal>
-            <div class="area__meta"><span class="area__num">04</span><span class="tags">Reproducibility / Transparency / Measurement</span></div>
+            <span class="area__num">04</span>
             <figure class="specimen" data-specimen="replicate">
               <canvas aria-hidden="true"></canvas>
-              <figcaption class="caption">FIG. 4 — The same procedure, run independently, should agree. Conceptual.</figcaption>
+              <figcaption class="caption">Fig. 04 — Conceptual</figcaption>
             </figure>
-            <h3 class="title">Open Science &amp; Evaluation</h3>
-            <p class="body">Building a stronger foundation for shared progress through transparent methods, reproducible experiments, careful measurement, and the open exchange of research. Scientific claims should be open to scrutiny, not insulated from it.</p>
+            <div class="area__text">
+              <h3 class="title">Open Science &amp; Evaluation</h3>
+              <p class="body">Making research more transparent, reproducible, and open to scrutiny.</p>
+            </div>
           </li>
         </ol>
       </section>
 
-      <!-- 03 — OPEN QUESTIONS -->
-      <section class="sec sec--questions" id="questions" aria-labelledby="questions-title">
-        <div class="sec__head" data-reveal="rule">
-          <p class="label"><span class="label__num">03</span> / THE QUESTIONS</p>
+      <!-- 03 — OPEN QUESTIONS (the one colour section) -->
+      <section class="band band--purple oq" id="questions" aria-labelledby="questions-title">
+        <div class="sec__head sec__head--on-colour" data-reveal="rule">
+          <p class="label"><span class="label__num">03</span> / OPEN QUESTIONS</p>
         </div>
-        <div class="q-intro grid">
-          <h2 class="display-l q-intro__title" id="questions-title" data-reveal>The difficult questions are the important ones.</h2>
-          <p class="lead q-intro__text" data-reveal>Some of the most consequential questions in AI remain unresolved. We approach them as scientific problems: questions to investigate, hypotheses to test, and assumptions to challenge.</p>
-        </div>
-        <div class="questions">
-          <div class="questions__progress" aria-hidden="true"><span></span></div>
-          <ol class="questions__list" role="list">
-            <li class="question" data-reveal="rule">
-              <span class="question__num">Q—01</span>
-              <h3 class="display-m question__title">Can we predict failure before it happens?</h3>
-              <p class="body question__text">How can we identify the conditions under which a model becomes unreliable, especially when it encounters situations that differ from its training and evaluation environments?</p>
+        <h2 class="display-l oq__title" id="questions-title" data-reveal>The questions we cannot ignore.</h2>
+        <div class="oq__map" data-reveal>
+          <svg class="oq__lines" aria-hidden="true"></svg>
+          <ol class="oq__list" role="list">
+            <li class="oq__q oq__q--main" data-q="0">
+              <span class="oq__marker"><span class="oq__dot"></span>Q1</span>
+              <p class="oq__text">Can we predict when AI will fail?</p>
             </li>
-            <li class="question" data-reveal="rule">
-              <span class="question__num">Q—02</span>
-              <h3 class="display-m question__title">What is happening inside a model?</h3>
-              <p class="body question__text">To what extent can we understand the representations and computational processes that give rise to a model’s behavior, rather than relying only on its outputs?</p>
+            <li class="oq__q oq__q--a" data-q="1">
+              <span class="oq__marker"><span class="oq__dot"></span>Q2</span>
+              <p class="oq__text">What happens inside a model?</p>
             </li>
-            <li class="question" data-reveal="rule">
-              <span class="question__num">Q—03</span>
-              <h3 class="display-m question__title">What does reliable evaluation actually measure?</h3>
-              <p class="body question__text">How can we distinguish genuine capability from superficial performance, and design evaluations that remain meaningful as models become more capable?</p>
+            <li class="oq__q oq__q--b" data-q="2">
+              <span class="oq__marker"><span class="oq__dot"></span>Q3</span>
+              <p class="oq__text">How do we measure genuine capability?</p>
             </li>
-            <li class="question" data-reveal="rule">
-              <span class="question__num">Q—04</span>
-              <h3 class="display-m question__title">How do we maintain alignment as capabilities grow?</h3>
-              <p class="body question__text">What evidence would demonstrate that a system’s behavior remains consistent with its intended objectives across unfamiliar situations, changing contexts, and increasingly complex tasks?</p>
+            <li class="oq__q oq__q--c" data-q="3">
+              <span class="oq__marker"><span class="oq__dot"></span>Q4</span>
+              <p class="oq__text">Can alignment keep pace with intelligence?</p>
             </li>
           </ol>
         </div>
@@ -150,146 +148,78 @@
           <p class="label"><span class="label__num">04</span> / METHOD</p>
         </div>
         <div class="sec-intro grid">
-          <h2 class="display-l sec-intro__title" id="approach-title" data-reveal>Rigorous by design. Open to revision.</h2>
-          <div class="sec-intro__text" data-reveal>
-            <p class="body">Good research is not a straight line from hypothesis to conclusion. It is a process of investigation, experimentation, evaluation, and revision.</p>
-            <p class="body">Our approach is built around making claims that can be examined, methods that can be repeated, and findings that can withstand scrutiny.</p>
-          </div>
+          <h2 class="display-l sec-intro__title" id="approach-title" data-reveal>Research is a process of revision.</h2>
+          <p class="support sec-intro__text" data-reveal>Every finding creates another question. Every assumption must withstand scrutiny.</p>
         </div>
-        <div class="method" data-reveal>
-          <svg class="method__loop" viewBox="0 0 1000 60" preserveAspectRatio="none" aria-hidden="true">
-            <path d="M875 58 V30 H125 V58" />
+        <div class="flow" data-reveal>
+          <svg class="flow__lines" aria-hidden="true">
+            <defs>
+              <marker id="flow-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+                <path d="M1 1 7 4 1 7" />
+              </marker>
+            </defs>
           </svg>
-          <p class="method__loop-label caption" aria-hidden="true">Revision — any stage can send the work back</p>
-          <ol class="stages" role="list">
-            <li class="stage">
-              <span class="stage__num">01</span>
-              <h3 class="title">Investigate</h3>
-              <p class="body">Define the question. Examine prior work, identify assumptions, and develop a clear account of what remains unknown.</p>
+          <ol class="flow__nodes" role="list">
+            <li class="node" tabindex="0" data-node="0" aria-describedby="node-desc-0">
+              <span class="node__num">01</span>
+              <span class="node__name">Investigate</span>
+              <span class="node__desc" id="node-desc-0">Define the question.</span>
             </li>
-            <li class="stage">
-              <span class="stage__num">02</span>
-              <h3 class="title">Experiment</h3>
-              <p class="body">Translate questions into testable hypotheses. Design controlled experiments and investigate the mechanisms behind observed behavior.</p>
+            <li class="node" tabindex="0" data-node="1" aria-describedby="node-desc-1">
+              <span class="node__num">02</span>
+              <span class="node__name">Experiment</span>
+              <span class="node__desc" id="node-desc-1">Test the hypothesis.</span>
             </li>
-            <li class="stage">
-              <span class="stage__num">03</span>
-              <h3 class="title">Evaluate</h3>
-              <p class="body">Measure results carefully. Examine failure cases, test alternative explanations, and distinguish strong evidence from suggestive results.</p>
+            <li class="node" tabindex="0" data-node="2" aria-describedby="node-desc-2">
+              <span class="node__num">03</span>
+              <span class="node__name">Evaluate</span>
+              <span class="node__desc" id="node-desc-2">Examine the evidence.</span>
             </li>
-            <li class="stage">
-              <span class="stage__num">04</span>
-              <h3 class="title">Share</h3>
-              <p class="body">Communicate methods, limitations, and findings clearly so that others can examine the work, reproduce results, and build on what has been learned.</p>
+            <li class="node" tabindex="0" data-node="3" aria-describedby="node-desc-3">
+              <span class="node__num">04</span>
+              <span class="node__name">Refine</span>
+              <span class="node__desc" id="node-desc-3">Revise what we know.</span>
             </li>
           </ol>
-          <p class="caption method__note">A working framework, not a fixed sequence. Most projects move back and forth between stages.</p>
+          <p class="caption flow__legend" aria-hidden="true">
+            <span class="flow__key flow__key--solid"></span> Sequence
+            <span class="flow__key flow__key--dashed"></span> Feedback — new evidence returns the work to an earlier stage
+          </p>
         </div>
       </section>
 
-      <!-- 05 — PUBLICATIONS -->
-      <section class="sec sec--publications" id="publications" aria-labelledby="publications-title">
-        <div class="sec__head" data-reveal="rule">
-          <p class="label"><span class="label__num">05</span> / PUBLICATIONS</p>
-        </div>
-        <div class="pubs grid">
-          <div class="pubs__intro" data-reveal>
-            <h2 class="display-l" id="publications-title">Research should stand on its evidence.</h2>
-            <p class="body">We believe scientific progress is strengthened when research methods, findings, and limitations can be examined by others.</p>
-            <p class="body">This section is dedicated to the work itself: the questions investigated, the evidence gathered, and the conclusions supported by the results.</p>
-            <p class="pubs__statement"><span>Methods matter.</span> <span>Evidence matters.</span> <span>Reproducibility matters.</span></p>
-            <div class="pubs__cta" data-publications-cta hidden></div>
-          </div>
-          <div class="index" data-reveal>
-            <div class="index__head" aria-hidden="true">
-              <span>No.</span><span>Title</span><span>Type</span><span>Date</span>
-            </div>
-            <ol class="index__list" role="list" data-publications></ol>
-          </div>
-        </div>
-      </section>
-
-      <!-- 06 — PRINCIPLES -->
-      <section class="sec sec--principles" id="principles" aria-labelledby="principles-title">
-        <div class="sec__head" data-reveal="rule">
-          <p class="label"><span class="label__num">06</span> / PRINCIPLES</p>
-        </div>
-        <div class="principles grid">
-          <h2 class="display-l principles__title" id="principles-title" data-reveal>What matters is not only what we build, but how we know.</h2>
-          <dl class="principles__list">
-            <div class="principle" data-reveal="rule">
-              <dt><span class="principle__num">i.</span> Scientific integrity</dt>
-              <dd class="body">Claims should follow evidence. We value careful measurement, intellectual honesty, and the willingness to revise our conclusions when the evidence demands it.</dd>
-            </div>
-            <div class="principle" data-reveal="rule">
-              <dt><span class="principle__num">ii.</span> Safety as a research priority</dt>
-              <dd class="body">Capability is not the only measure of progress. Understanding risks, limitations, and failure modes is fundamental to developing AI responsibly.</dd>
-            </div>
-            <div class="principle" data-reveal="rule">
-              <dt><span class="principle__num">iii.</span> Openness to scrutiny</dt>
-              <dd class="body">Research is stronger when methods and assumptions can be examined. We value transparency, reproducibility, and constructive criticism.</dd>
-            </div>
-            <div class="principle" data-reveal="rule">
-              <dt><span class="principle__num">iv.</span> Human-centered progress</dt>
-              <dd class="body">AI should be developed with serious consideration for the people and societies affected by its behavior. Technical progress must remain connected to human intentions and consequences.</dd>
-            </div>
-          </dl>
-        </div>
-      </section>
-
-      <!-- 07 — ABOUT -->
-      <section class="sec sec--about" id="about" aria-labelledby="about-title">
-        <div class="sec__head" data-reveal="rule">
-          <p class="label"><span class="label__num">07</span> / ABOUT</p>
-        </div>
-        <div class="about grid">
-          <h2 class="display-xl about__title" id="about-title" data-reveal>An independent lab for a difficult problem.</h2>
-          <div class="about__body" data-reveal>
-            <p class="lead">NEXUS is an independent AI research lab focused on the foundations of machine intelligence and the challenge of developing AI systems that are more understandable, reliable, and aligned with human intentions.</p>
-            <p class="body">Our research agenda brings together questions about how models learn, how they behave, how their limitations can be evaluated, and how their internal processes might become more interpretable.</p>
-            <p class="body">We believe that building more capable AI systems and understanding those systems must advance together.</p>
-          </div>
-          <blockquote class="about__quote marks" data-reveal>
-            <p>Better understanding is not separate from progress. It is part of what makes progress possible.</p>
-          </blockquote>
-        </div>
-      </section>
-
-      <!-- 08 — CONNECT -->
+      <!-- 05 — CONNECT -->
       <section class="sec sec--connect" id="connect" aria-labelledby="connect-title">
         <div class="sec__head" data-reveal="rule">
-          <p class="label"><span class="label__num">08</span> / CONNECT</p>
+          <p class="label"><span class="label__num">05</span> / CONNECT</p>
         </div>
         <div class="sec-intro grid">
-          <h2 class="display-l sec-intro__title" id="connect-title" data-reveal>Important questions benefit from open exchange.</h2>
-          <div class="sec-intro__text" data-reveal>
-            <p class="body">Progress in AI research depends on careful thinking, constructive challenge, and the exchange of ideas across disciplines.</p>
-            <p class="body">NEXUS welcomes thoughtful conversations with researchers, practitioners, and others interested in the foundations of machine intelligence, AI safety, and interpretability.</p>
-          </div>
+          <h2 class="display-l sec-intro__title" id="connect-title" data-reveal>Good questions deserve good company.</h2>
+          <p class="support sec-intro__text" data-reveal>Have an idea, a research question, or an interest in working together? Let’s talk.</p>
         </div>
-        <div class="paths">
-          <article class="path path--primary" data-reveal>
-            <p class="label">Pathway A</p>
-            <h3 class="display-m">Research collaboration</h3>
-            <p class="body">Have a research question, a related line of work, or an idea worth examining together? We welcome relevant conversations and opportunities to exchange perspectives.</p>
-            <a class="hero__cta" data-contact hidden>DISCUSS RESEARCH <svg class="arrow" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 7.5 7.5 2.5M3.25 2.5H7.5V6.75" /></svg></a>
+        <div class="paths" data-reveal>
+          <article class="path path--a">
+            <p class="label path__label">A — Collaboration</p>
+            <h3 class="path__title">Research collaboration</h3>
+            <p class="body">Share an idea or explore a research question together.</p>
+            <a class="hero__cta path__cta" data-contact hidden>DISCUSS RESEARCH <svg class="arrow" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 7.5 7.5 2.5M3.25 2.5H7.5V6.75" /></svg></a>
           </article>
-          <article class="path" data-reveal>
-            <p class="label">Pathway B</p>
-            <h3 class="display-m">Careers and opportunities</h3>
-            <p class="body">We are interested in people who approach difficult technical questions with rigor, curiosity, and intellectual honesty.</p>
-            <a class="hero__cta hero__cta--secondary" data-contact hidden>GET IN TOUCH <svg class="arrow" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 7.5 7.5 2.5M3.25 2.5H7.5V6.75" /></svg></a>
+          <article class="path path--b">
+            <p class="label path__label">B — Careers</p>
+            <h3 class="path__title">Careers &amp; opportunities</h3>
+            <p class="body">Bring curiosity, rigor, and a willingness to challenge assumptions.</p>
+            <a class="hero__cta hero__cta--secondary path__cta" data-contact hidden>GET IN TOUCH <svg class="arrow" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 7.5 7.5 2.5M3.25 2.5H7.5V6.75" /></svg></a>
           </article>
         </div>
       </section>
 
-      <!-- 09 — CLOSING STATEMENT -->
+      <!-- 06 — FINAL CTA -->
       <section class="sec sec--closing" aria-labelledby="closing-title">
         <div class="closing">
           <canvas class="closing__field" aria-hidden="true"></canvas>
           <div class="closing__content">
             <h2 class="display-xl closing__title" id="closing-title" data-reveal>The future of AI depends on what we understand today.</h2>
-            <p class="lead closing__text" data-reveal>Explore the questions shaping our research, examine the evidence, and join the conversation about how increasingly capable AI systems can become more understandable and reliable.</p>
+            <p class="support closing__text" data-reveal>Explore the questions shaping a more understandable and reliable future for AI.</p>
             <div class="hero__actions" data-reveal>
               <a class="hero__cta" href="#research">EXPLORE OUR RESEARCH <svg class="arrow" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 7.5 7.5 2.5M3.25 2.5H7.5V6.75" /></svg></a>
               <a class="hero__cta hero__cta--secondary" href="#connect">GET IN TOUCH <svg class="arrow" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 7.5 7.5 2.5M3.25 2.5H7.5V6.75" /></svg></a>
@@ -311,15 +241,10 @@
           <ul role="list">
             <li><a href="#research">Research</a></li>
             <li><a href="#approach">Our Approach</a></li>
-            <li><a href="#publications">Publications</a></li>
-            <li><a href="#about">About</a></li>
             <li><a href="#connect">Careers</a></li>
+            <li><a href="#connect">Get in touch</a></li>
           </ul>
         </nav>
-        <div class="footer__contact">
-          <p class="label">Contact</p>
-          <a class="link" href="#connect">Get in touch <svg class="arrow" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 7.5 7.5 2.5M3.25 2.5H7.5V6.75" /></svg></a>
-        </div>
         <p class="footer__statement"><span>Making AI more capable.</span> <span>And more reliable.</span></p>
       </div>
       <p class="footer__mark" aria-hidden="true">NEXUS</p>
