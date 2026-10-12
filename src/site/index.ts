@@ -2,7 +2,7 @@ import './site.css';
 import { CONTACT_URL } from './content';
 import { initSpecimens } from './specimens';
 import { initClosingField } from './closingField';
-import { initFlow } from './diagrams';
+import { initStack } from './stack';
 import { initQuestions } from './questions';
 
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -40,7 +40,7 @@ export function initSite() {
   initReveal();
   initSpecimens(reduced);
   initQuestions(reduced);
-  initFlow();
+  initStack(reduced);
   const field = document.querySelector<HTMLCanvasElement>('.closing__field');
   if (field) initClosingField(field, reduced);
 }

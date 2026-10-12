@@ -155,41 +155,64 @@
           <h2 class="display-l sec-intro__title" id="approach-title" data-reveal>Research is a process of revision.</h2>
           <p class="support sec-intro__text" data-reveal>Every finding creates another question. Every assumption must withstand scrutiny.</p>
         </div>
-        <div class="flow" data-reveal>
-          <svg class="flow__lines" aria-hidden="true">
-            <defs>
-              <marker id="flow-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-                <path d="M1 1 7 4 1 7" />
-              </marker>
-            </defs>
-          </svg>
-          <ol class="flow__nodes" role="list">
-            <li class="node" tabindex="0" data-node="0" aria-describedby="node-desc-0">
-              <span class="node__num">01</span>
-              <span class="node__name">Investigate</span>
-              <span class="node__desc" id="node-desc-0">Define the question.</span>
-            </li>
-            <li class="node" tabindex="0" data-node="1" aria-describedby="node-desc-1">
-              <span class="node__num">02</span>
-              <span class="node__name">Experiment</span>
-              <span class="node__desc" id="node-desc-1">Test the hypothesis.</span>
-            </li>
-            <li class="node" tabindex="0" data-node="2" aria-describedby="node-desc-2">
-              <span class="node__num">03</span>
-              <span class="node__name">Evaluate</span>
-              <span class="node__desc" id="node-desc-2">Examine the evidence.</span>
-            </li>
-            <li class="node" tabindex="0" data-node="3" aria-describedby="node-desc-3">
-              <span class="node__num">04</span>
-              <span class="node__name">Refine</span>
-              <span class="node__desc" id="node-desc-3">Revise what we know.</span>
-            </li>
-          </ol>
-          <p class="caption flow__legend" aria-hidden="true">
-            <span class="flow__key flow__key--solid"></span> Sequence
-            <span class="flow__key flow__key--dashed"></span> Feedback — new evidence returns the work to an earlier stage
-          </p>
-        </div>
+        <ol class="stack" role="list">
+          <li class="plate" style="--i: 0">
+            <div class="plate__tab label"><span class="label__num">01</span><span>Investigate</span><span class="plate__count">01 / 04</span></div>
+            <div class="plate__body">
+              <div class="plate__text">
+                <h3 class="plate__name">Investigate</h3>
+                <p class="support">Define the question.</p>
+                <p class="label plate__to">Leads to → 02 Experiment</p>
+              </div>
+              <figure class="plate__fig">
+                <canvas data-fig="investigate" aria-hidden="true"></canvas>
+                <figcaption class="caption">Fig. 4.1 — conceptual</figcaption>
+              </figure>
+            </div>
+          </li>
+          <li class="plate" style="--i: 1">
+            <div class="plate__tab label"><span class="label__num">02</span><span>Experiment</span><span class="plate__count">02 / 04</span></div>
+            <div class="plate__body">
+              <div class="plate__text">
+                <h3 class="plate__name">Experiment</h3>
+                <p class="support">Test the hypothesis.</p>
+                <p class="label plate__to">Leads to → 03 Evaluate</p>
+              </div>
+              <figure class="plate__fig">
+                <canvas data-fig="experiment" aria-hidden="true"></canvas>
+                <figcaption class="caption">Fig. 4.2 — conceptual</figcaption>
+              </figure>
+            </div>
+          </li>
+          <li class="plate" style="--i: 2">
+            <div class="plate__tab label"><span class="label__num">03</span><span>Evaluate</span><span class="plate__count">03 / 04</span></div>
+            <div class="plate__body">
+              <div class="plate__text">
+                <h3 class="plate__name">Evaluate</h3>
+                <p class="support">Examine the evidence.</p>
+                <p class="label plate__to">Leads to → 04 Refine <em>↺ returns to 02 Experiment</em></p>
+              </div>
+              <figure class="plate__fig">
+                <canvas data-fig="evaluate" aria-hidden="true"></canvas>
+                <figcaption class="caption">Fig. 4.3 — conceptual</figcaption>
+              </figure>
+            </div>
+          </li>
+          <li class="plate" style="--i: 3">
+            <div class="plate__tab label"><span class="label__num">04</span><span>Refine</span><span class="plate__count">04 / 04</span></div>
+            <div class="plate__body">
+              <div class="plate__text">
+                <h3 class="plate__name">Refine</h3>
+                <p class="support">Revise what we know.</p>
+                <p class="label plate__to"><em>↺ Returns to 01 Investigate</em></p>
+              </div>
+              <figure class="plate__fig">
+                <canvas data-fig="refine" aria-hidden="true"></canvas>
+                <figcaption class="caption">Fig. 4.4 — conceptual</figcaption>
+              </figure>
+            </div>
+          </li>
+        </ol>
       </section>
 
       <!-- 05 — CONNECT -->

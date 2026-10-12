@@ -775,146 +775,149 @@ a:hover > .arrow {
 }
 
 /* ---------------------------------------------------- 04 method ---------- */
-/* A working diagram: four stages, a forward sequence, and feedback paths. */
+/* Each stage is a plate that slides over the last and leaves its index tab
+   behind, with a conceptual dot figure that settles as the plate arrives. */
 
-.flow {
-  position: relative;
-  margin-top: var(--s-9);
-  padding: var(--s-9) 0 var(--s-10);
+.plate__to em {
+  font-style: normal;
+  color: var(--accent);
 }
 
-.flow__lines {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-  pointer-events: none;
-}
+/* Each plate sticks one tab-height lower than the one before it, so the
+   earlier plates leave their index tabs showing above the current one. */
 
-.flow__lines path {
-  fill: none;
-  stroke: var(--line-strong);
-  stroke-width: 1;
-  transition: stroke 0.3s var(--ease), opacity 0.3s var(--ease);
-}
-
-.flow__lines path.is-feedback {
-  stroke-dasharray: 4 5;
-}
-
-.flow__lines marker path {
-  fill: none;
-  stroke: var(--grey);
-  stroke-width: 1;
-  stroke-dasharray: none;
-}
-
-.flow.is-focused .flow__lines path:not(.is-lit) {
-  opacity: 0.35;
-}
-
-.flow__lines path.is-lit {
-  stroke: var(--accent);
-}
-
-.flow__nodes {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--s-9);
-  margin: 0;
+.stack {
+  --tab: 60px;
+  margin: var(--s-9) calc(1px - var(--inset)) 0;
   padding: 0;
   list-style: none;
 }
 
-.node {
-  position: relative;
-  display: grid;
-  gap: var(--s-2);
-  padding: var(--s-5);
+.plate {
+  position: sticky;
+  top: calc(var(--i) * var(--tab));
+  height: max(520px, calc(100svh - 3 * var(--tab)));
+  display: flex;
+  flex-direction: column;
+  padding-inline: calc(var(--inset) - 1px);
   background: var(--bg);
-  box-shadow: inset 0 0 0 1px var(--line-strong);
-  cursor: default;
-  transition: box-shadow 0.3s var(--ease), opacity 0.3s var(--ease);
 }
 
-.node:hover,
-.node:focus-visible,
-.node.is-lit {
-  box-shadow: inset 0 0 0 1px var(--accent);
+.plate__tab {
+  position: relative;
+  flex: none;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  align-items: center;
+  height: var(--tab);
 }
 
-.node:focus-visible {
-  outline: none;
+.plate__tab::before {
+  content: '';
+  position: absolute;
+  left: calc(1px - var(--inset));
+  right: calc(1px - var(--inset));
+  top: 0;
+  height: 1px;
+  background: var(--line-strong);
 }
 
-.flow.is-focused .node:not(.is-lit):not(.is-active) {
-  opacity: 0.45;
+/* "+" registration marks where the plate's rule meets the frame. */
+.plate__tab::after {
+  content: '';
+  position: absolute;
+  left: calc(-6px - var(--inset));
+  right: calc(-6px - var(--inset));
+  top: -6px;
+  height: 13px;
+  pointer-events: none;
+  background:
+    linear-gradient(var(--ink), var(--ink)) 0 6px / 13px 1px no-repeat,
+    linear-gradient(var(--ink), var(--ink)) 6px 0 / 1px 13px no-repeat,
+    linear-gradient(var(--ink), var(--ink)) 100% 6px / 13px 1px no-repeat,
+    linear-gradient(var(--ink), var(--ink)) calc(100% - 6px) 0 / 1px 13px no-repeat;
 }
 
-.node__num {
-  font-family: 'Roboto Mono', monospace;
-  font-weight: 600;
-  font-size: 12px;
-  letter-spacing: 0.06em;
-  color: var(--accent);
+.plate__tab > :nth-child(1) {
+  grid-column: 1;
 }
 
-.node__name {
-  font-family: 'Overused Grotesk', sans-serif;
-  font-weight: 500;
-  font-size: var(--fs-title);
-  line-height: 1.1;
-  letter-spacing: -0.015em;
+.plate__tab > :nth-child(2) {
+  grid-column: 2 / span 6;
   color: var(--ink);
 }
 
-/* The short description reveals on hover / focus; always shown on touch. */
-.node__desc {
-  font-family: '42dot Sans', sans-serif;
-  font-weight: 350;
-  font-size: 15px;
-  line-height: 1.4;
-  color: var(--grey);
-  opacity: 0;
-  transform: translateY(4px);
-  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+.plate__tab .plate__count {
+  grid-column: 11 / span 2;
+  justify-self: end;
+  color: var(--dim);
+  font-variant-numeric: tabular-nums;
 }
 
-.node:hover .node__desc,
-.node:focus-visible .node__desc,
-.node.is-active .node__desc {
-  opacity: 1;
-  transform: none;
+.plate__body {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  padding: var(--s-7) 0 var(--s-8);
 }
 
-@media (hover: none) {
-  .node__desc {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-.flow__legend {
+.plate__text {
+  grid-column: 2 / span 4;
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--s-2) var(--s-3);
-  position: absolute;
-  left: 0;
-  bottom: 0;
+  flex-direction: column;
+  gap: var(--s-4);
 }
 
-.flow__key {
-  display: inline-block;
-  width: 24px;
-  border-top: 1px solid var(--line-strong);
+.plate__name {
+  margin: 0 0 var(--s-2);
+  font-family: 'Overused Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: var(--fs-statement);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--ink);
 }
 
-.flow__key--dashed {
-  margin-left: var(--s-4);
-  border-top-style: dashed;
+.plate__to {
+  margin-top: auto;
+}
+
+.plate__to em {
+  display: block;
+  margin-top: var(--s-2);
+}
+
+.plate__to em:first-child {
+  margin-top: 0;
+}
+
+.plate__fig {
+  grid-column: 7 / span 6;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  margin: 0;
+}
+
+.plate__fig canvas {
+  display: block;
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+}
+
+.plate__fig figcaption {
+  padding-top: var(--s-3);
+  margin-top: var(--s-3);
+  border-top: 1px solid var(--line);
+}
+
+.stack.is-static .plate {
+  position: relative;
+  top: auto;
 }
 
 /* ---------------------------------------------------- 05 connect --------- */
@@ -1172,9 +1175,8 @@ a:hover > .arrow {
   .spot__stage {
     grid-column: 7 / span 6;
   }
-  .flow__nodes {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--s-9) var(--s-10);
+  .plate__text {
+    grid-column: 1 / span 5;
   }
   .paths {
     grid-template-columns: 1fr 1fr;
@@ -1256,13 +1258,35 @@ a:hover > .arrow {
   .spot__numeral {
     font-size: 180px;
   }
-  .flow {
-    padding: var(--s-6) 0 var(--s-9);
+  .stack {
+    --tab: 48px;
   }
-  .flow__nodes {
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--s-7);
-    margin-right: var(--s-8);
+
+  .plate {
+    height: max(560px, calc(100svh - 3 * var(--tab)));
+  }
+
+  .plate__tab > :nth-child(2) {
+    grid-column: 2 / span 7;
+  }
+
+  .plate__tab .plate__count {
+    grid-column: 9 / span 4;
+  }
+
+  .plate__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-6);
+    padding: var(--s-5) 0 var(--s-6);
+  }
+
+  .plate__to {
+    margin-top: 0;
+  }
+
+  .plate__fig {
+    flex: 1;
   }
   .paths {
     grid-template-columns: minmax(0, 1fr);
