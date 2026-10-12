@@ -156,9 +156,9 @@ body {
   color: var(--cta-fg);
   font-family: 'Roboto Mono', monospace;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 15px;
   line-height: normal;
-  letter-spacing: 0.32px;
+  letter-spacing: 0.3px;
   white-space: nowrap;
   text-decoration: none;
 }
@@ -207,10 +207,11 @@ body {
 }
 
 .nav__links a {
-  font-family: '42dot Sans', sans-serif;
-  font-weight: 350;
-  font-size: 14px;
-  letter-spacing: -0.14px;
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.26px;
+  text-transform: uppercase;
   color: var(--text);
   text-decoration: none;
   transition: color 0.2s ease;
@@ -240,8 +241,8 @@ body {
   color: var(--cta-fg);
   font-family: 'Roboto Mono', monospace;
   font-weight: 600;
-  font-size: 14px;
-  letter-spacing: 0.28px;
+  font-size: 13px;
+  letter-spacing: 0.26px;
   white-space: nowrap;
   text-decoration: none;
 }
