@@ -2,7 +2,8 @@ import './site.css';
 import { CONTACT_URL } from './content';
 import { initSpecimens } from './specimens';
 import { initClosingField } from './closingField';
-import { initFlow, initOpenQuestions } from './diagrams';
+import { initFlow } from './diagrams';
+import { initQuestions } from './questions';
 
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -38,7 +39,7 @@ export function initSite() {
   wireContact();
   initReveal();
   initSpecimens(reduced);
-  initOpenQuestions();
+  initQuestions(reduced);
   initFlow();
   const field = document.querySelector<HTMLCanvasElement>('.closing__field');
   if (field) initClosingField(field, reduced);

@@ -115,32 +115,34 @@
         </ol>
       </section>
 
-      <!-- 03 — OPEN QUESTIONS (the one colour section) -->
-      <section class="band band--purple oq" id="questions" aria-labelledby="questions-title">
-        <div class="sec__head sec__head--on-colour" data-reveal="rule">
-          <p class="label"><span class="label__num">03</span> / OPEN QUESTIONS</p>
-        </div>
-        <h2 class="display-l oq__title" id="questions-title" data-reveal>The questions we cannot ignore.</h2>
-        <div class="oq__map" data-reveal>
-          <svg class="oq__lines" aria-hidden="true"></svg>
-          <ol class="oq__list" role="list">
-            <li class="oq__q oq__q--main" data-q="0">
-              <span class="oq__marker"><span class="oq__dot"></span>Q1</span>
-              <p class="oq__text">Can we predict when AI will fail?</p>
-            </li>
-            <li class="oq__q oq__q--a" data-q="1">
-              <span class="oq__marker"><span class="oq__dot"></span>Q2</span>
-              <p class="oq__text">What happens inside a model?</p>
-            </li>
-            <li class="oq__q oq__q--b" data-q="2">
-              <span class="oq__marker"><span class="oq__dot"></span>Q3</span>
-              <p class="oq__text">How do we measure genuine capability?</p>
-            </li>
-            <li class="oq__q oq__q--c" data-q="3">
-              <span class="oq__marker"><span class="oq__dot"></span>Q4</span>
-              <p class="oq__text">Can alignment keep pace with intelligence?</p>
-            </li>
-          </ol>
+      <!-- 03 — OPEN QUESTIONS (the one colour section; scroll-driven spotlight) -->
+      <section class="band band--purple pinq" id="questions" aria-labelledby="questions-title">
+        <div class="pinq__pin">
+          <div class="sec__head sec__head--on-colour" data-reveal="rule">
+            <p class="label"><span class="label__num">03</span> / OPEN QUESTIONS</p>
+          </div>
+          <div class="spot">
+            <div class="spot__side">
+              <h2 class="display-l spot__title" id="questions-title">The questions we cannot ignore.</h2>
+              <ol class="spot__rail" role="list" aria-label="Open questions">
+                <li><button class="spot__tab" type="button" aria-current="step" data-q="0"><span>01</span> Failure</button></li>
+                <li><button class="spot__tab" type="button" data-q="1"><span>02</span> Inside the model</button></li>
+                <li><button class="spot__tab" type="button" data-q="2"><span>03</span> Measurement</button></li>
+                <li><button class="spot__tab" type="button" data-q="3"><span>04</span> Alignment</button></li>
+              </ol>
+            </div>
+            <div class="spot__stage" aria-live="polite">
+              <span class="spot__numeral" aria-hidden="true">1</span>
+              <span class="spot__meta">Q—<span data-spot-num>01</span> / 04</span>
+              <ol class="spot__list" role="list">
+                <li class="spot__q is-active">Can we predict when AI will fail?</li>
+                <li class="spot__q">What happens inside a model?</li>
+                <li class="spot__q">How do we measure genuine capability?</li>
+                <li class="spot__q">Can alignment keep pace with intelligence?</li>
+              </ol>
+              <span class="spot__progress" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+            </div>
+          </div>
         </div>
       </section>
 

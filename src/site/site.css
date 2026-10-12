@@ -539,55 +539,131 @@ a:hover > .arrow {
   color: var(--on-purple);
 }
 
-.oq__title {
-  max-width: 16ch;
-  color: var(--on-purple);
+/* Scroll-driven spotlight: the section pins for one screen plus four scroll
+   "beats"; each beat brings the next question onto the stage. */
+
+.pinq {
+  height: calc(100svh + 4 * 65svh);
+  padding: 0;
 }
 
-.oq__map {
-  position: relative;
-  margin-top: var(--s-9);
+.pinq__pin {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  display: flex;
+  flex-direction: column;
+  padding: 0 calc(var(--frame) + var(--inset)) var(--s-8);
+  overflow: hidden;
 }
 
-.oq__lines {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-  pointer-events: none;
+.pinq .sec__head {
+  margin-inline: calc(-1 * var(--inset));
+  margin-bottom: 0;
 }
 
-.oq__lines path {
-  fill: none;
-  stroke: var(--on-purple-line);
-  stroke-width: 1;
-  transition: stroke 0.35s var(--ease);
-}
-
-.oq__lines path.is-lit {
-  stroke: var(--on-purple);
-}
-
-.oq__list {
-  position: relative;
+.spot {
+  flex: 1;
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: var(--gutter);
+  align-items: stretch;
+  padding-top: var(--s-8);
+}
+
+.spot__side {
+  grid-column: 1 / span 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--s-8);
+}
+
+.spot__title {
+  color: var(--on-purple);
+}
+
+.spot__rail {
+  display: grid;
   margin: 0;
   padding: 0;
   list-style: none;
+  border-top: 1px solid var(--on-purple-line);
 }
 
-.oq__q {
+.spot__tab {
   position: relative;
+  display: flex;
+  gap: var(--s-4);
+  width: 100%;
+  padding: var(--s-4) 0;
+  border: 0;
+  border-bottom: 1px solid var(--on-purple-line);
+  background: none;
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: left;
+  color: var(--on-purple-dim);
+  cursor: pointer;
+  transition: color 0.25s var(--ease);
 }
 
-.oq__marker {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--s-3);
-  margin-bottom: var(--s-4);
+.spot__tab span {
+  min-width: 2.4em;
+}
+
+.spot__tab::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: var(--on-purple);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease);
+}
+
+.spot__tab:hover,
+.spot__tab[aria-current] {
+  color: var(--on-purple);
+}
+
+.spot__tab[aria-current]::after {
+  transform: scaleX(1);
+}
+
+.spot__stage {
+  grid-column: 6 / span 7;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+/* The question number as an outline figure behind the text. */
+.spot__numeral {
+  position: absolute;
+  right: -0.04em;
+  top: 0;
+  font-family: 'Overused Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: clamp(200px, 25vw, 380px);
+  line-height: 1;
+  letter-spacing: -0.06em;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--on-purple-line);
+  pointer-events: none;
+}
+
+.spot__meta {
+  position: relative;
+  margin-bottom: var(--s-5);
   font-family: 'Roboto Mono', monospace;
   font-weight: 600;
   font-size: 12px;
@@ -595,69 +671,89 @@ a:hover > .arrow {
   color: var(--on-purple-dim);
 }
 
-/* Square node the connecting lines attach to. */
-.oq__dot {
-  width: 9px;
-  height: 9px;
-  background: var(--purple);
-  box-shadow: inset 0 0 0 1px var(--on-purple);
-  transition: background-color 0.3s var(--ease);
-}
-
-.oq__q:hover .oq__dot,
-.oq__q.is-lit .oq__dot {
-  background: var(--on-purple);
-}
-
-.oq__text {
+/* All four questions share one grid cell; only the active one shows. */
+.spot__list {
+  position: relative;
+  display: grid;
   margin: 0;
-  padding-left: 21px; /* node (9px) + gap (12px) */
+  padding: 0;
+  list-style: none;
+}
+
+.spot__q {
+  grid-area: 1 / 1;
+  align-self: end;
+  max-width: 15ch;
   font-family: 'Overused Grotesk', sans-serif;
   font-weight: 500;
-  font-size: var(--fs-title);
-  line-height: 1.15;
-  letter-spacing: -0.015em;
-  color: var(--on-purple);
-  text-wrap: balance;
-}
-
-.oq__q--main {
-  grid-column: 4 / span 8;
-  margin-top: calc(-1 * var(--s-8));
-}
-
-.oq__q--main .oq__text {
-  max-width: 15ch;
   font-size: var(--fs-question);
-  line-height: 1.08;
+  line-height: 1.06;
   letter-spacing: -0.03em;
+  color: var(--on-purple);
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.45s var(--ease), transform 0.55s var(--ease);
 }
 
-.oq__q--a,
-.oq__q--b,
-.oq__q--c {
-  grid-row: 2;
-  margin-top: var(--s-10);
+.spot__q.is-past {
+  transform: translateY(-24px);
 }
 
-.oq__q--a .oq__text,
-.oq__q--b .oq__text,
-.oq__q--c .oq__text {
-  max-width: 16ch;
+.spot__q.is-active {
+  opacity: 1;
+  transform: none;
 }
 
-.oq__q--a {
-  grid-column: 1 / span 3;
+.spot__progress {
+  position: relative;
+  display: flex;
+  gap: var(--s-2);
+  margin-top: var(--s-7);
 }
 
-.oq__q--b {
-  grid-column: 5 / span 3;
-  margin-top: calc(var(--s-10) + var(--s-8));
+.spot__progress span {
+  position: relative;
+  width: 48px;
+  height: 1px;
+  background: var(--on-purple-line);
+  overflow: hidden;
 }
 
-.oq__q--c {
-  grid-column: 9 / span 4;
-  margin-top: calc(var(--s-10) + var(--s-8) * 2);
+.spot__progress span::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--on-purple);
+  transform: scaleX(var(--fill, 0));
+  transform-origin: left;
+}
+
+/* Static fallback (reduced motion): no pinning, all four questions listed. */
+.pinq.is-static {
+  height: auto;
+}
+
+.pinq.is-static .pinq__pin {
+  position: relative;
+  height: auto;
+  padding-bottom: var(--s-11);
+}
+
+.pinq.is-static .spot__rail,
+.pinq.is-static .spot__numeral,
+.pinq.is-static .spot__meta,
+.pinq.is-static .spot__progress {
+  display: none;
+}
+
+.pinq.is-static .spot__list {
+  gap: var(--s-7);
+}
+
+.pinq.is-static .spot__q {
+  grid-area: auto;
+  opacity: 1;
+  transform: none;
 }
 
 /* ---------------------------------------------------- 04 method ---------- */
@@ -1052,17 +1148,11 @@ a:hover > .arrow {
     grid-row: auto;
     grid-column: 1;
   }
-  .oq__q--main {
-    grid-column: 2 / span 11;
+  .spot__side {
+    grid-column: 1 / span 5;
   }
-  .oq__q--a {
-    grid-column: 1 / span 4;
-  }
-  .oq__q--b {
-    grid-column: 5 / span 4;
-  }
-  .oq__q--c {
-    grid-column: 9 / span 4;
+  .spot__stage {
+    grid-column: 7 / span 6;
   }
   .flow__nodes {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1120,38 +1210,33 @@ a:hover > .arrow {
   .area--side {
     grid-template-columns: auto minmax(0, 1fr);
   }
-  /* Open questions: a single column hung from one vertical line. */
-  .oq__map {
-    margin-top: var(--s-8);
-    padding-left: var(--s-6);
-    border-left: 1px solid var(--on-purple-line);
-  }
-  .oq__lines {
-    display: none;
-  }
-  .oq__list {
+  /* Open questions: title, a compact number rail, then the stage. */
+  .spot {
     grid-template-columns: minmax(0, 1fr);
-    row-gap: var(--s-8);
+    grid-template-rows: auto 1fr;
+    padding-top: var(--s-6);
   }
-  .oq__q--main,
-  .oq__q--a,
-  .oq__q--b,
-  .oq__q--c {
-    grid-column: 1 / -1;
-    grid-row: auto;
-    margin-top: 0;
-    max-width: none;
+  .spot__side,
+  .spot__stage {
+    grid-column: 1;
   }
-  .oq__dot {
-    position: absolute;
-    left: calc(-1 * var(--s-6) - 5px);
-    top: 4px;
+  .spot__side {
+    gap: var(--s-6);
   }
-  .oq__marker {
-    position: relative;
+  .spot__rail {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    border-top: 0;
   }
-  .oq__text {
-    padding-left: 0;
+  .spot__tab {
+    padding: var(--s-3) 0;
+    font-size: 0;
+    gap: 0;
+  }
+  .spot__tab span {
+    font-size: 13px;
+  }
+  .spot__numeral {
+    font-size: 180px;
   }
   .flow {
     padding: var(--s-6) 0 var(--s-9);

@@ -1,9 +1,7 @@
-// Line work for two sections, drawn in SVG from the live positions of the HTML
-// elements so it stays exact at every breakpoint.
-//  - Open Questions: a branching line from the dominant question to the three
-//    supporting ones.
-//  - Method: a four-stage flow with forward connectors and dashed feedback paths;
-//    hovering or focusing a stage highlights its connections.
+// Method diagram line work, drawn in SVG from the live positions of the HTML
+// elements so it stays exact at every breakpoint: a four-stage flow with
+// forward connectors and dashed feedback paths; hovering or focusing a stage
+// highlights its connections.
 
 const SVG = 'http://www.w3.org/2000/svg';
 
@@ -26,43 +24,6 @@ function path(d: string, attrs: Record<string, string> = {}) {
 function onLayout(target: Element, draw: () => void) {
   new ResizeObserver(draw).observe(target);
   document.fonts?.ready.then(draw);
-}
-
-// ------------------------------------------------------------ open questions
-
-export function initOpenQuestions() {
-  const map = document.querySelector<HTMLElement>('.oq__map');
-  const svg = map?.querySelector<SVGSVGElement>('.oq__lines');
-  if (!map || !svg) return;
-  const qs = [...map.querySelectorAll<HTMLElement>('.oq__q')];
-
-  const draw = () => {
-    svg.replaceChildren();
-    if (getComputedStyle(svg).display === 'none') return;
-    const origin = map.getBoundingClientRect();
-    const dots = qs.map((q) => boxOf(q.querySelector('.oq__dot')!, origin));
-    const [main, ...rest] = dots;
-    const branchY = Math.min(...rest.map((d) => d.t)) - 48;
-    rest.forEach((d, i) => {
-      svg.append(
-        path(`M${main.cx} ${main.cy} V${branchY} H${d.cx} V${d.cy}`, { 'data-q': String(i + 1) }),
-      );
-    });
-  };
-
-  const light = (index: number | null) => {
-    svg.querySelectorAll('path').forEach((p) => {
-      const q = Number(p.getAttribute('data-q'));
-      p.classList.toggle('is-lit', index === 0 || q === index);
-    });
-    qs.forEach((q, i) => q.classList.toggle('is-lit', index !== null && (index === 0 || i === index || i === 0)));
-  };
-
-  qs.forEach((q, i) => {
-    q.addEventListener('pointerenter', () => light(i));
-    q.addEventListener('pointerleave', () => light(null));
-  });
-  onLayout(map, draw);
 }
 
 // ------------------------------------------------------------ method flow
