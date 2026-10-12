@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NEXUS — Open Questions, layout studies</title>
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 fill=%22%23000%22/%3E%3Cpath d=%22M9 23V9h2l10 11V9h2v14h-2L11 12v11z%22 fill=%22%23f0f0ec%22/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  </head>
+  <body class="lab">
+    <main class="site">
+      <header class="lab-head">
+        <a class="lab-head__brand" href="./">NEXUS</a>
+        <h1 class="display-l lab-head__title">Open Questions — four layout studies</h1>
+        <p class="support lab-head__note">Same content, colour and type scale as the live site. Only the composition changes.</p>
+        <nav class="lab-head__index" aria-label="Studies">
+          <a href="#a"><span>A</span> Field</a>
+          <a href="#b"><span>B</span> Spotlight</a>
+          <a href="#c"><span>C</span> Read-along</a>
+          <a href="#d"><span>D</span> Track</a>
+        </nav>
+      </header>
+
+      <!-- ===================================================== STUDY A — FIELD -->
+      <div class="lab-label" id="a">
+        <p class="label"><span class="label__num">A</span> / FIELD</p>
+        <p class="caption">The questions plotted on two axes: observed behaviour ↔ internal mechanism, today ↔ more capable systems.</p>
+      </div>
+      <section class="band band--purple study-a" aria-labelledby="a-title">
+        <div class="sec__head sec__head--on-colour">
+          <p class="label"><span class="label__num">03</span> / OPEN QUESTIONS</p>
+        </div>
+        <h2 class="display-l study-a__title" id="a-title">The questions we cannot ignore.</h2>
+        <div class="field">
+          <span class="field__axis field__axis--x" aria-hidden="true"></span>
+          <span class="field__axis field__axis--y" aria-hidden="true"></span>
+          <span class="field__origin" aria-hidden="true"></span>
+          <span class="field__end field__end--left caption">← Observed behaviour</span>
+          <span class="field__end field__end--right caption">Internal mechanism →</span>
+          <span class="field__end field__end--top caption">↑ More capable systems</span>
+          <span class="field__end field__end--bottom caption">Systems today ↓</span>
+          <ol class="field__list" role="list">
+            <li class="fq fq--bl">
+              <span class="fq__tag"><span class="fq__node"></span>Q1 · Behaviour · Today</span>
+              <p class="fq__text">Can we predict when AI will fail?</p>
+            </li>
+            <li class="fq fq--br">
+              <span class="fq__tag"><span class="fq__node"></span>Q2 · Mechanism · Today</span>
+              <p class="fq__text">What happens inside a model?</p>
+            </li>
+            <li class="fq fq--tl">
+              <span class="fq__tag"><span class="fq__node"></span>Q3 · Behaviour · More capable</span>
+              <p class="fq__text">How do we measure genuine capability?</p>
+            </li>
+            <li class="fq fq--tr">
+              <span class="fq__tag"><span class="fq__node"></span>Q4 · Mechanism · More capable</span>
+              <p class="fq__text">Can alignment keep pace with intelligence?</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ===================================================== STUDY B — SPOTLIGHT -->
+      <div class="lab-label" id="b">
+        <p class="label"><span class="label__num">B</span> / SPOTLIGHT</p>
+        <p class="caption">One question at a time on a large stage, chosen from a numbered rail. Rotates slowly; stops when you interact.</p>
+      </div>
+      <section class="band band--purple study-b" aria-labelledby="b-title">
+        <div class="sec__head sec__head--on-colour">
+          <p class="label"><span class="label__num">03</span> / OPEN QUESTIONS</p>
+        </div>
+        <div class="spot">
+          <div class="spot__side">
+            <h2 class="display-l spot__title" id="b-title">The questions we cannot ignore.</h2>
+            <div class="spot__rail" role="tablist" aria-label="Open questions">
+              <button class="spot__tab" role="tab" id="spot-tab-0" aria-controls="spot-panel" aria-selected="true"><span>01</span> Failure</button>
+              <button class="spot__tab" role="tab" id="spot-tab-1" aria-controls="spot-panel" aria-selected="false" tabindex="-1"><span>02</span> Inside the model</button>
+              <button class="spot__tab" role="tab" id="spot-tab-2" aria-controls="spot-panel" aria-selected="false" tabindex="-1"><span>03</span> Measurement</button>
+              <button class="spot__tab" role="tab" id="spot-tab-3" aria-controls="spot-panel" aria-selected="false" tabindex="-1"><span>04</span> Alignment</button>
+            </div>
+          </div>
+          <div class="spot__stage" id="spot-panel" role="tabpanel" aria-labelledby="spot-tab-0" aria-live="polite">
+            <span class="spot__numeral" aria-hidden="true">1</span>
+            <span class="spot__meta">Q—<span data-spot-num>01</span> / 04</span>
+            <p class="spot__q" data-spot-q>Can we predict when AI will fail?</p>
+            <span class="spot__progress" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================== STUDY C — READ-ALONG -->
+      <div class="lab-label" id="c">
+        <p class="label"><span class="label__num">C</span> / READ-ALONG</p>
+        <p class="caption">The four questions set as one paragraph that lights up as you read down the page.</p>
+      </div>
+      <section class="band band--purple study-c" aria-labelledby="c-title">
+        <div class="sec__head sec__head--on-colour">
+          <p class="label"><span class="label__num">03</span> / OPEN QUESTIONS</p>
+        </div>
+        <div class="readalong">
+          <h2 class="readalong__title" id="c-title">The questions we cannot ignore.</h2>
+          <span class="readalong__track" aria-hidden="true"><span></span></span>
+          <p class="readalong__text" data-readalong>
+            <span class="ra-q">Can we predict when AI will fail?</span><sup class="ra-mark">01</sup>
+            <span class="ra-q">What happens inside a model?</span><sup class="ra-mark">02</sup>
+            <span class="ra-q">How do we measure genuine capability?</span><sup class="ra-mark">03</sup>
+            <span class="ra-q">Can alignment keep pace with intelligence?</span><sup class="ra-mark">04</sup>
+          </p>
+        </div>
+      </section>
+
+      <!-- ===================================================== STUDY D — TRACK -->
+      <div class="lab-label" id="d">
+        <p class="label"><span class="label__num">D</span> / TRACK</p>
+        <p class="caption">The section holds still while the questions travel past horizontally as you scroll.</p>
+      </div>
+      <section class="band band--purple study-d" aria-labelledby="d-title">
+        <div class="track__pin">
+          <div class="sec__head sec__head--on-colour">
+            <p class="label"><span class="label__num">03</span> / OPEN QUESTIONS</p>
+          </div>
+          <div class="track__viewport">
+            <ol class="track__rail" role="list">
+              <li class="track__intro">
+                <h2 class="display-l" id="d-title">The questions we cannot ignore.</h2>
+                <span class="caption track__hint" aria-hidden="true">Scroll →</span>
+              </li>
+              <li class="track__panel">
+                <span class="track__num">Q—01</span>
+                <p class="track__q">Can we predict when AI will fail?</p>
+              </li>
+              <li class="track__panel">
+                <span class="track__num">Q—02</span>
+                <p class="track__q">What happens inside a model?</p>
+              </li>
+              <li class="track__panel">
+                <span class="track__num">Q—03</span>
+                <p class="track__q">How do we measure genuine capability?</p>
+              </li>
+              <li class="track__panel">
+                <span class="track__num">Q—04</span>
+                <p class="track__q">Can alignment keep pace with intelligence?</p>
+              </li>
+            </ol>
+          </div>
+          <span class="track__bar" aria-hidden="true"><span></span></span>
+        </div>
+      </section>
+
+      <footer class="lab-foot">
+        <a class="link" href="./">← Back to the NEXUS site</a>
+      </footer>
+    </main>
+    <script type="module" src="/src/lab/questions.ts"></script>
+  </body>
+</html>

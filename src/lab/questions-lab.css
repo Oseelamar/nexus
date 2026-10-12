@@ -1,0 +1,662 @@
+/* =============================================================================
+   Open Questions — layout studies. Uses the site's tokens (site.css): purple
+   band, white type, Overused Grotesk / Roboto Mono, the same type scale.
+   ========================================================================== */
+
+/* ---------------------------------------------------------------- page --- */
+
+.lab-head {
+  padding: var(--s-9) var(--inset) var(--s-9);
+}
+
+.lab-head__brand {
+  display: inline-block;
+  margin-bottom: var(--s-8);
+  font-family: 'Overused Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  letter-spacing: 1.2px;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.lab-head__title {
+  max-width: 18ch;
+}
+
+.lab-head__note {
+  max-width: 52ch;
+  margin-top: var(--s-4);
+}
+
+.lab-head__index {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3) var(--s-6);
+  margin-top: var(--s-7);
+}
+
+.lab-head__index a {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--grey);
+  text-decoration: none;
+  transition: color 0.2s var(--ease);
+}
+
+.lab-head__index a:hover {
+  color: var(--ink);
+}
+
+.lab-head__index span {
+  color: var(--accent);
+}
+
+.lab-label {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
+  gap: var(--s-2) var(--gutter);
+  align-items: baseline;
+  margin-inline: calc(-1 * var(--frame));
+  padding: var(--s-6) calc(var(--frame) + var(--inset)) var(--s-5);
+  border-top: 1px solid var(--line-strong);
+  scroll-margin-top: var(--s-4);
+}
+
+.lab-label .caption {
+  color: var(--grey);
+  font-size: 12px;
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+
+.lab-foot {
+  padding: var(--s-8) var(--inset) var(--s-9);
+  border-top: 1px solid var(--line);
+  margin-inline: calc(-1 * var(--frame));
+  padding-inline: calc(var(--frame) + var(--inset));
+}
+
+/* Shared: the band's own heading sits a little closer to its content here. */
+.study-a .sec__head,
+.study-b .sec__head,
+.study-c .sec__head {
+  margin-bottom: var(--s-8);
+}
+
+/* ===================================================== A — FIELD ========== */
+
+.study-a__title {
+  max-width: 16ch;
+  color: var(--on-purple);
+}
+
+.field {
+  position: relative;
+  height: clamp(520px, 46vw, 680px);
+  margin-top: var(--s-8);
+}
+
+/* Axes with a fine tick scale every 64px. */
+.field__axis {
+  position: absolute;
+  pointer-events: none;
+}
+
+.field__axis--x {
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 9px;
+  margin-top: -4px;
+  background:
+    linear-gradient(var(--on-purple-line), var(--on-purple-line)) 0 50% / 100% 1px no-repeat,
+    repeating-linear-gradient(90deg, var(--on-purple-line) 0 1px, transparent 1px 64px) 0 0 / 100% 9px no-repeat;
+}
+
+.field__axis--y {
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 9px;
+  margin-left: -4px;
+  background:
+    linear-gradient(var(--on-purple-line), var(--on-purple-line)) 50% 0 / 1px 100% no-repeat,
+    repeating-linear-gradient(180deg, var(--on-purple-line) 0 1px, transparent 1px 64px) 0 0 / 9px 100% no-repeat;
+}
+
+.field__origin {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 25px;
+  height: 25px;
+  margin: -12px 0 0 -12px;
+  background:
+    linear-gradient(var(--on-purple), var(--on-purple)) 0 12px / 25px 1px no-repeat,
+    linear-gradient(var(--on-purple), var(--on-purple)) 12px 0 / 1px 25px no-repeat;
+}
+
+.field__end {
+  position: absolute;
+  color: var(--on-purple-dim);
+  white-space: nowrap;
+}
+
+.field__end--left {
+  left: 0;
+  top: calc(50% + 14px);
+}
+
+.field__end--right {
+  right: 0;
+  top: calc(50% + 14px);
+}
+
+.field__end--top {
+  top: 0;
+  left: calc(50% + 16px);
+}
+
+.field__end--bottom {
+  bottom: 0;
+  left: calc(50% + 16px);
+}
+
+.field__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fq {
+  position: absolute;
+  width: calc(50% - 96px);
+  max-width: 460px;
+}
+
+.fq--tl {
+  left: 0;
+  top: var(--s-8);
+}
+
+.fq--tr {
+  left: calc(50% + 48px);
+  top: var(--s-8);
+}
+
+.fq--bl {
+  left: 0;
+  top: calc(50% + 64px);
+}
+
+.fq--br {
+  left: calc(50% + 48px);
+  top: calc(50% + 64px);
+}
+
+.fq__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  margin-bottom: var(--s-4);
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--on-purple-dim);
+  transition: color 0.3s var(--ease);
+}
+
+.fq__node {
+  width: 9px;
+  height: 9px;
+  box-shadow: inset 0 0 0 1px var(--on-purple);
+  transition: background-color 0.3s var(--ease);
+}
+
+.fq:hover .fq__node {
+  background: var(--on-purple);
+}
+
+.fq:hover .fq__tag {
+  color: var(--on-purple);
+}
+
+.fq__text {
+  margin: 0;
+  font-family: 'Overused Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: clamp(26px, 2.5vw, 36px);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--on-purple);
+  text-wrap: balance;
+}
+
+/* ===================================================== B — SPOTLIGHT ====== */
+
+.spot {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  align-items: stretch;
+}
+
+.spot__side {
+  grid-column: 1 / span 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--s-8);
+}
+
+.spot__title {
+  color: var(--on-purple);
+}
+
+.spot__rail {
+  display: grid;
+  border-top: 1px solid var(--on-purple-line);
+}
+
+.spot__tab {
+  position: relative;
+  display: flex;
+  gap: var(--s-4);
+  padding: var(--s-4) 0;
+  border: 0;
+  border-bottom: 1px solid var(--on-purple-line);
+  background: none;
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: left;
+  color: var(--on-purple-dim);
+  cursor: pointer;
+  transition: color 0.25s var(--ease);
+}
+
+.spot__tab span {
+  min-width: 2.4em;
+}
+
+.spot__tab::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: var(--on-purple);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease);
+}
+
+.spot__tab:hover,
+.spot__tab[aria-selected='true'] {
+  color: var(--on-purple);
+}
+
+.spot__tab[aria-selected='true']::after {
+  transform: scaleX(1);
+}
+
+.spot__stage {
+  grid-column: 6 / span 7;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 480px;
+  overflow: hidden;
+}
+
+/* The question number as an outline figure behind the text. */
+.spot__numeral {
+  position: absolute;
+  right: -0.04em;
+  top: 0;
+  font-family: 'Overused Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: clamp(220px, 27vw, 400px);
+  line-height: 1;
+  letter-spacing: -0.06em;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--on-purple-line);
+  pointer-events: none;
+}
+
+.spot__meta {
+  position: relative;
+  margin-bottom: var(--s-5);
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--on-purple-dim);
+}
+
+.spot__q {
+  position: relative;
+  max-width: 15ch;
+  margin: 0;
+  font-family: 'Overused Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: var(--fs-question);
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  color: var(--on-purple);
+  transition: opacity 0.35s var(--ease), transform 0.45s var(--ease);
+}
+
+.spot__q.is-out {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.spot__progress {
+  position: relative;
+  display: flex;
+  gap: var(--s-2);
+  margin-top: var(--s-7);
+}
+
+.spot__progress span {
+  position: relative;
+  width: 48px;
+  height: 1px;
+  background: var(--on-purple-line);
+  overflow: hidden;
+}
+
+.spot__progress span::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--on-purple);
+  transform: scaleX(var(--fill, 0));
+  transform-origin: left;
+}
+
+/* ===================================================== C — READ-ALONG ===== */
+
+.readalong {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+}
+
+.readalong__title {
+  grid-column: 1 / span 3;
+  align-self: start;
+  position: sticky;
+  top: var(--s-8);
+  margin: 0;
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--on-purple);
+  max-width: 18ch;
+}
+
+/* Reading progress, on the left edge of the text column. */
+.readalong__track {
+  grid-column: 4;
+  grid-row: 1;
+  justify-self: start;
+  width: 1px;
+  background: var(--on-purple-line);
+}
+
+.readalong__track span {
+  display: block;
+  height: 100%;
+  background: var(--on-purple);
+  transform: scaleY(var(--ra, 0));
+  transform-origin: top;
+}
+
+.readalong__text {
+  grid-column: 4 / span 9;
+  grid-row: 1;
+  margin: 0;
+  padding: var(--s-2) 0 var(--s-4) var(--s-7);
+  font-family: 'Overused Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: var(--fs-section);
+  line-height: 1.22;
+  letter-spacing: -0.028em;
+  color: var(--on-purple);
+}
+
+.ra-w {
+  opacity: 0.28;
+  transition: opacity 0.25s linear;
+}
+
+.ra-w.is-lit {
+  opacity: 1;
+}
+
+.ra-mark {
+  display: inline-block;
+  margin: 0 0.5em 0 0.25em;
+  padding: 2px 5px;
+  vertical-align: 0.9em;
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  box-shadow: inset 0 0 0 1px var(--on-purple-line);
+  color: var(--on-purple-dim);
+}
+
+/* ===================================================== D — TRACK ========== */
+
+.study-d {
+  height: 340svh;
+  padding: 0;
+}
+
+.track__pin {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding-inline: calc(var(--frame) + var(--inset));
+}
+
+.study-d .sec__head {
+  margin-bottom: 0;
+}
+
+.track__viewport {
+  flex: 1;
+  margin-inline: calc(-1 * (var(--frame) + var(--inset)));
+  overflow: hidden;
+}
+
+.track__rail {
+  display: flex;
+  height: 100%;
+  margin: 0;
+  padding: 0 calc(var(--frame) + var(--inset));
+  list-style: none;
+  will-change: transform;
+}
+
+.track__intro,
+.track__panel {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--s-9) var(--s-7) var(--s-8);
+}
+
+.track__intro {
+  width: min(36vw, 480px);
+  padding-left: 0;
+}
+
+.track__intro .display-l {
+  color: var(--on-purple);
+  max-width: 11ch;
+}
+
+.track__hint {
+  color: var(--on-purple-dim);
+}
+
+.track__panel {
+  width: min(56vw, 760px);
+  border-left: 1px solid var(--on-purple-line);
+}
+
+.track__num {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--on-purple-dim);
+}
+
+.track__q {
+  max-width: 13ch;
+  margin: 0;
+  font-family: 'Overused Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: var(--fs-question);
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  color: var(--on-purple);
+}
+
+.track__bar {
+  position: relative;
+  height: 1px;
+  margin-bottom: var(--s-7);
+  background: var(--on-purple-line);
+}
+
+.track__bar span {
+  position: absolute;
+  inset: 0;
+  background: var(--on-purple);
+  transform: scaleX(var(--track, 0));
+  transform-origin: left;
+}
+
+/* Static fallback (reduced motion, narrow screens): panels simply stack. */
+.study-d.is-static {
+  height: auto;
+}
+
+.study-d.is-static .track__pin {
+  position: relative;
+  height: auto;
+  padding-bottom: var(--s-9);
+}
+
+.study-d.is-static .track__rail {
+  flex-direction: column;
+  padding-left: 0;
+  transform: none !important;
+}
+
+.study-d.is-static .track__viewport {
+  margin-inline: 0;
+}
+
+.study-d.is-static .track__intro,
+.study-d.is-static .track__panel {
+  width: auto;
+  padding: var(--s-7) 0;
+  gap: var(--s-6);
+}
+
+.study-d.is-static .track__panel {
+  border-left: 0;
+  border-top: 1px solid var(--on-purple-line);
+}
+
+.study-d.is-static .track__hint,
+.study-d.is-static .track__bar {
+  display: none;
+}
+
+/* =================================================== tablet ≤ 1100px ===== */
+
+@media (max-width: 1100px) {
+  .spot__side {
+    grid-column: 1 / -1;
+  }
+  .spot__stage {
+    grid-column: 1 / -1;
+    min-height: 420px;
+    margin-top: var(--s-8);
+  }
+  .readalong__title {
+    grid-column: 1 / -1;
+    position: static;
+    margin-bottom: var(--s-6);
+  }
+  .readalong__track {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .readalong__text {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+}
+
+/* =================================================== mobile ≤ 700px ====== */
+
+@media (max-width: 700px) {
+  .lab-label {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  /* A: the field becomes a list; each tag already names its position. */
+  .field {
+    height: auto;
+    margin-top: var(--s-7);
+  }
+  .field__axis,
+  .field__origin,
+  .field__end {
+    display: none;
+  }
+  .field__list {
+    display: grid;
+    gap: var(--s-7);
+    border-left: 1px solid var(--on-purple-line);
+    padding-left: var(--s-5);
+  }
+  .fq {
+    position: relative;
+    inset: auto;
+    width: auto;
+  }
+  .spot__stage {
+    min-height: 360px;
+  }
+  .readalong__text {
+    padding-left: var(--s-5);
+  }
+}
