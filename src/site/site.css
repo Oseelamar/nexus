@@ -523,12 +523,30 @@ a:hover > .arrow {
   background: var(--on-purple-line);
 }
 
+/* The band covers the page frame, so it carries its own frame lines in the
+   on-colour tone. Its rule sits on the colour edge, where a "+" would be cut
+   in half, so the band drops the registration marks. */
+.band::before,
+.band::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--on-purple-line);
+  pointer-events: none;
+}
+
+.band::before {
+  left: var(--frame);
+}
+
+.band::after {
+  right: var(--frame);
+}
+
 .sec__head--on-colour::after {
-  background:
-    linear-gradient(var(--on-purple), var(--on-purple)) 0 6px / 13px 1px no-repeat,
-    linear-gradient(var(--on-purple), var(--on-purple)) 6px 0 / 1px 13px no-repeat,
-    linear-gradient(var(--on-purple), var(--on-purple)) 100% 6px / 13px 1px no-repeat,
-    linear-gradient(var(--on-purple), var(--on-purple)) calc(100% - 6px) 0 / 1px 13px no-repeat;
+  content: none;
 }
 
 .sec__head--on-colour .label {
