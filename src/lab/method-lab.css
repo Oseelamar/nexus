@@ -1,0 +1,996 @@
+/* =============================================================================
+   Method — layout studies. Built only from the site's tokens (site.css):
+   black ground, fine strokes, Overused Grotesk / 42dot Sans / Roboto Mono,
+   accent #d7b9ff for whatever is active, dashed strokes for feedback.
+   ========================================================================== */
+
+.mkey {
+  display: inline-block;
+  width: 24px;
+  vertical-align: middle;
+  border-top: 1px solid var(--line-strong);
+}
+
+.mkey--dashed {
+  margin-left: var(--s-3);
+  border-top-style: dashed;
+  border-top-color: var(--accent);
+}
+
+/* Return paths are always dashed and in the accent, in every study. */
+.mcyc em,
+.mled em,
+.mstk em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+/* ===================================================== A — CYCLE ========== */
+/* The section pins for one screen plus four beats; the dial turns 90° a beat. */
+
+.mcyc {
+  position: relative;
+  height: calc(100svh + 4 * 70svh);
+  padding: 0 var(--inset);
+}
+
+.mcyc__pin {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: var(--s-6);
+}
+
+.mcyc .sec__head {
+  margin-bottom: var(--s-7);
+}
+
+.mcyc__body {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+}
+
+.mcyc__side {
+  grid-column: 1 / span 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--s-6);
+  padding-bottom: var(--s-5);
+}
+
+.mcyc__intro .display-l {
+  max-width: 13ch;
+}
+
+.mcyc__support {
+  max-width: 34ch;
+  margin-top: var(--s-4);
+}
+
+.mcyc__meta {
+  display: block;
+  margin-bottom: var(--s-4);
+  color: var(--dim);
+  font-variant-numeric: tabular-nums;
+}
+
+.mcyc__meta span {
+  color: var(--accent);
+}
+
+.mcyc__stages {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mcyc__stage {
+  grid-area: 1 / 1;
+  display: grid;
+  gap: var(--s-3);
+  align-content: end;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.5s var(--ease), transform 0.6s var(--ease);
+}
+
+.mcyc__stage.is-past {
+  transform: translateY(-18px);
+}
+
+.mcyc__stage.is-active {
+  opacity: 1;
+  transform: none;
+}
+
+.mcyc__name {
+  font-family: 'Overused Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: var(--fs-statement);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+
+.mcyc__next {
+  margin-top: var(--s-2);
+  color: var(--grey);
+}
+
+.mcyc__next em {
+  margin-left: var(--s-3);
+}
+
+.mcyc__stage:first-child .mcyc__next em,
+.mcyc__stage:last-child .mcyc__next em {
+  margin-left: 0;
+}
+
+.mcyc__dial {
+  --size: min(100%, calc(100svh - 230px));
+  grid-column: 7 / span 6;
+  position: relative;
+  align-self: center;
+  justify-self: center;
+  width: var(--size);
+  aspect-ratio: 1;
+}
+
+.mcyc__svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.mcyc__svg path,
+.mcyc__svg line,
+.mcyc__progress {
+  fill: none;
+  stroke-width: var(--u, 0.2);
+}
+
+.mcyc__seg {
+  stroke: var(--line-strong);
+  transition: stroke 0.4s var(--ease);
+}
+
+.mcyc__ticks line {
+  stroke: var(--line);
+}
+
+.mcyc__ticks line.is-major {
+  stroke: var(--line-strong);
+}
+
+.mcyc__svg .is-feedback {
+  stroke-dasharray: calc(var(--u, 0.2) * 4) calc(var(--u, 0.2) * 5);
+}
+
+.mcyc__chord {
+  stroke: var(--line-strong);
+  transition: stroke 0.4s var(--ease);
+}
+
+.mcyc__chord.is-lit,
+.mcyc__seg.is-feedback.is-lit {
+  stroke: var(--accent);
+}
+
+.mcyc__svg marker path {
+  fill: none;
+  stroke: var(--grey);
+  stroke-width: 1;
+  stroke-dasharray: none;
+}
+
+.mcyc__progress {
+  stroke: var(--accent);
+  stroke-width: calc(var(--u, 0.2) * 1.5);
+  stroke-dasharray: 0 100;
+}
+
+.mcyc__head {
+  fill: var(--accent);
+}
+
+.mcyc__centre {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: grid;
+  justify-items: center;
+  gap: var(--s-1);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.mcyc__deg {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 400;
+  font-size: clamp(22px, 2.2vw, 32px);
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+/* Stations: a square node sitting exactly on the ring; the label sits inside
+   the ring, clear of the dashed return that lands on Experiment. */
+.mcyc__station {
+  --node: 9px;
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: 32px;
+  height: 32px;
+  margin: -16px 0 0 -16px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--dim);
+  cursor: pointer;
+  transition: color 0.4s var(--ease);
+}
+
+.mcyc__station::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--node);
+  height: var(--node);
+  box-sizing: border-box;
+  margin: calc(var(--node) / -2) 0 0 calc(var(--node) / -2);
+  border: 1px solid var(--line-strong);
+  background: var(--bg);
+  transition: background 0.4s var(--ease), border-color 0.4s var(--ease);
+}
+
+.mcyc__lab {
+  position: absolute;
+  display: flex;
+  gap: var(--s-2);
+}
+
+.mcyc__lab span {
+  transition: color 0.4s var(--ease);
+}
+
+.mcyc__station[data-station='0'] .mcyc__lab {
+  left: 50%;
+  top: calc(50% + 14px);
+  transform: translateX(-50%);
+}
+
+.mcyc__station[data-station='1'] .mcyc__lab {
+  right: calc(50% + 12px);
+  bottom: calc(50% + 10px);
+}
+
+.mcyc__station[data-station='2'] .mcyc__lab {
+  left: 50%;
+  bottom: calc(50% + 14px);
+  transform: translateX(-50%);
+}
+
+.mcyc__station[data-station='3'] .mcyc__lab {
+  left: calc(50% + 16px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.mcyc__station:hover,
+.mcyc__station.is-past {
+  color: var(--grey);
+}
+
+.mcyc__station.is-past::before {
+  border-color: var(--grey);
+}
+
+.mcyc__station.is-active {
+  color: var(--ink);
+}
+
+.mcyc__station.is-active .mcyc__lab span {
+  color: var(--accent);
+}
+
+.mcyc__station.is-active::before {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+.mcyc__legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-2) var(--s-3);
+}
+
+.mcyc__legend .mkey--dashed {
+  margin-left: var(--s-4);
+}
+
+/* Reduced motion: no pin, the full loop drawn, every stage listed. */
+.mcyc.is-static {
+  height: auto;
+  padding-bottom: var(--section-gap);
+}
+
+.mcyc.is-static .mcyc__pin {
+  position: relative;
+  height: auto;
+}
+
+.mcyc.is-static .mcyc__stages {
+  gap: var(--s-6);
+}
+
+.mcyc.is-static .mcyc__stage {
+  grid-area: auto;
+  opacity: 1;
+  transform: none;
+}
+
+.mcyc.is-static .mcyc__meta,
+.mcyc.is-static .mcyc__centre {
+  display: none;
+}
+
+.mcyc.is-static .mcyc__dial {
+  --size: min(100%, 560px);
+}
+
+/* ===================================================== B — LEDGER ========= */
+
+.ledger {
+  position: relative;
+  margin: var(--s-9) calc(-1 * var(--inset)) 0;
+}
+
+.ledger__cols,
+.lrow {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  padding-inline: var(--inset);
+}
+
+.ledger__cols {
+  padding-bottom: var(--s-3);
+}
+
+.ledger__cols span:nth-child(1) {
+  grid-column: 1;
+}
+
+.ledger__cols span:nth-child(2) {
+  grid-column: 2 / span 5;
+}
+
+.ledger__cols span:nth-child(3) {
+  grid-column: 7 / span 4;
+}
+
+.ledger__cols span:nth-child(4) {
+  grid-column: 11 / span 2;
+  justify-self: end;
+}
+
+.ledger__rows {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-bottom: 1px solid var(--line);
+}
+
+.lrow {
+  position: relative;
+  align-items: baseline;
+  padding-block: var(--s-6) var(--s-7);
+  border-top: 1px solid var(--line);
+  cursor: default;
+  transition: opacity 0.35s var(--ease);
+}
+
+.lrow::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -1px;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.7s var(--ease);
+}
+
+.lrow.is-active::before {
+  transform: scaleX(1);
+}
+
+.lrow:focus-visible {
+  outline: none;
+}
+
+.lrow__num {
+  grid-column: 1;
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--dim);
+  transition: color 0.35s var(--ease);
+}
+
+.lrow__name {
+  grid-column: 2 / span 5;
+  font-family: 'Overused Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: var(--fs-statement);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+
+.lrow__desc {
+  grid-column: 7 / span 4;
+}
+
+.lrow__to {
+  grid-column: 11 / span 2;
+  justify-self: end;
+  white-space: nowrap;
+}
+
+.lrow__to em {
+  margin-left: var(--s-2);
+}
+
+.lrow.is-active .lrow__num,
+.lrow.is-lit .lrow__num {
+  color: var(--accent);
+}
+
+.ledger.is-focused .lrow:not(.is-lit):not(.is-active) {
+  opacity: 0.32;
+}
+
+.ledger__returns {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.ledger__returns path {
+  fill: none;
+  stroke: var(--line-strong);
+  stroke-width: 1;
+  stroke-dasharray: 3 4;
+  transition: stroke 0.35s var(--ease), opacity 0.35s var(--ease);
+}
+
+.ledger__returns path.is-lit {
+  stroke: var(--accent);
+}
+
+.ledger.is-focused .ledger__returns path:not(.is-lit) {
+  opacity: 0.3;
+}
+
+.ledger__returns marker path {
+  stroke: var(--grey);
+  stroke-dasharray: none;
+}
+
+.ledger__legend {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  margin-top: var(--s-4);
+  padding-inline: var(--inset);
+}
+
+.ledger__legend .mkey--dashed {
+  margin-left: 0;
+}
+
+/* ===================================================== C — TRACE ========== */
+
+.trace {
+  position: relative;
+  margin-top: var(--s-9);
+}
+
+.trace__lanes {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-bottom: 1px solid var(--line);
+}
+
+.lane {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  align-items: center;
+  min-height: 120px;
+  border-top: 1px solid var(--line);
+}
+
+.lane__label {
+  grid-column: 1 / span 3;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: var(--s-4);
+  row-gap: var(--s-1);
+  align-items: baseline;
+}
+
+.lane__num {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--dim);
+  transition: color 0.35s var(--ease);
+}
+
+.lane__name {
+  font-family: 'Overused Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: var(--fs-title);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: var(--dim);
+  transition: color 0.35s var(--ease);
+}
+
+.lane__desc {
+  grid-column: 2;
+  font-family: '42dot Sans', sans-serif;
+  font-weight: 350;
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--dim);
+  transition: color 0.35s var(--ease);
+}
+
+.lane__track {
+  grid-column: 4 / span 9;
+  height: 1px;
+  background: repeating-linear-gradient(90deg, var(--line) 0 2px, transparent 2px 6px);
+}
+
+.lane.is-on .lane__name {
+  color: var(--ink);
+}
+
+.lane.is-on .lane__desc {
+  color: var(--grey);
+}
+
+.lane.is-current .lane__num {
+  color: var(--accent);
+}
+
+.trace__svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.trace__svg path {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1;
+}
+
+.trace__svg path.is-back {
+  stroke: var(--accent);
+  stroke-dasharray: 4 5;
+}
+
+.trace__svg marker path {
+  stroke: var(--ink);
+  stroke-dasharray: none;
+}
+
+.trace__svg rect {
+  fill: var(--bg);
+  stroke: var(--ink);
+  stroke-width: 1;
+  opacity: 0;
+  transition: opacity 0.3s var(--ease), fill 0.3s var(--ease);
+}
+
+.trace__svg rect.is-on {
+  opacity: 1;
+}
+
+.trace__svg rect.is-current {
+  fill: var(--accent);
+  stroke: var(--accent);
+}
+
+.trace__svg text {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  fill: var(--accent);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+}
+
+.trace__svg text.is-on {
+  opacity: 1;
+}
+
+.trace__foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--s-4);
+  margin-top: var(--s-4);
+}
+
+.trace__keys {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+
+.trace__keys .mkey--dashed {
+  margin-left: var(--s-3);
+}
+
+/* ===================================================== D — STACK ========== */
+/* Each plate sticks one tab-height lower than the one before it, so the
+   earlier plates leave their index tabs showing above the current one. */
+
+.stack {
+  --tab: 60px;
+  margin: var(--s-9) calc(1px - var(--inset)) 0;
+  padding: 0;
+  list-style: none;
+}
+
+.plate {
+  position: sticky;
+  top: calc(var(--i) * var(--tab));
+  height: max(520px, calc(100svh - 3 * var(--tab)));
+  display: flex;
+  flex-direction: column;
+  padding-inline: calc(var(--inset) - 1px);
+  background: var(--bg);
+}
+
+.plate__tab {
+  position: relative;
+  flex: none;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  align-items: center;
+  height: var(--tab);
+}
+
+.plate__tab::before {
+  content: '';
+  position: absolute;
+  left: calc(1px - var(--inset));
+  right: calc(1px - var(--inset));
+  top: 0;
+  height: 1px;
+  background: var(--line-strong);
+}
+
+/* "+" registration marks where the plate's rule meets the frame. */
+.plate__tab::after {
+  content: '';
+  position: absolute;
+  left: calc(-6px - var(--inset));
+  right: calc(-6px - var(--inset));
+  top: -6px;
+  height: 13px;
+  pointer-events: none;
+  background:
+    linear-gradient(var(--ink), var(--ink)) 0 6px / 13px 1px no-repeat,
+    linear-gradient(var(--ink), var(--ink)) 6px 0 / 1px 13px no-repeat,
+    linear-gradient(var(--ink), var(--ink)) 100% 6px / 13px 1px no-repeat,
+    linear-gradient(var(--ink), var(--ink)) calc(100% - 6px) 0 / 1px 13px no-repeat;
+}
+
+.plate__tab > :nth-child(1) {
+  grid-column: 1;
+}
+
+.plate__tab > :nth-child(2) {
+  grid-column: 2 / span 6;
+  color: var(--ink);
+}
+
+.plate__tab .plate__count {
+  grid-column: 11 / span 2;
+  justify-self: end;
+  color: var(--dim);
+  font-variant-numeric: tabular-nums;
+}
+
+.plate__body {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  padding: var(--s-7) 0 var(--s-8);
+}
+
+.plate__text {
+  grid-column: 2 / span 4;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+
+.plate__name {
+  margin: 0 0 var(--s-2);
+  font-family: 'Overused Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: var(--fs-statement);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+
+.plate__to {
+  margin-top: auto;
+}
+
+.plate__to em {
+  display: block;
+  margin-top: var(--s-2);
+}
+
+.plate__to em:first-child {
+  margin-top: 0;
+}
+
+.plate__fig {
+  grid-column: 7 / span 6;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  margin: 0;
+}
+
+.plate__fig canvas {
+  display: block;
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+}
+
+.plate__fig figcaption {
+  padding-top: var(--s-3);
+  margin-top: var(--s-3);
+  border-top: 1px solid var(--line);
+}
+
+.mstk.is-static .plate {
+  position: relative;
+  top: auto;
+}
+
+/* ===================================================== tablet ============= */
+
+@media (max-width: 1100px) {
+  .mcyc__side {
+    grid-column: 1 / span 6;
+  }
+
+  .mcyc__dial {
+    grid-column: 7 / span 6;
+  }
+
+  .lrow__name {
+    grid-column: 2 / span 5;
+  }
+
+  .lrow__desc {
+    grid-column: 7 / span 3;
+  }
+
+  .lrow__to {
+    grid-column: 10 / span 3;
+  }
+
+  .lane__label {
+    grid-column: 1 / span 4;
+  }
+
+  .lane__track {
+    grid-column: 5 / span 8;
+  }
+
+  .plate__text {
+    grid-column: 1 / span 5;
+  }
+}
+
+/* ===================================================== mobile ============= */
+
+@media (max-width: 700px) {
+  /* A: dial on top, the current stage beneath it. */
+  .mcyc .sec__head {
+    margin-bottom: var(--s-5);
+  }
+
+  .mcyc__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-5);
+  }
+
+  .mcyc__side {
+    display: contents;
+  }
+
+  .mcyc__intro {
+    order: 0;
+  }
+
+  .mcyc__support,
+  .mcyc__legend {
+    display: none;
+  }
+
+  .mcyc__dial {
+    --size: min(100%, calc(100svh - 430px));
+    order: 1;
+    align-self: center;
+  }
+
+  .mcyc__readout {
+    order: 2;
+  }
+
+  .mcyc__station {
+    --node: 7px;
+    font-size: 10px;
+  }
+
+  .mcyc__lab span {
+    display: none;
+  }
+
+  .mcyc__deg {
+    font-size: 18px;
+  }
+
+  .mcyc.is-static .mcyc__support {
+    display: block;
+  }
+
+  /* B: number in its own column, everything else stacked beside it. */
+  .ledger__cols {
+    display: none;
+  }
+
+  .lrow {
+    grid-template-columns: 36px minmax(0, 1fr);
+    row-gap: var(--s-3);
+    padding-block: var(--s-5) var(--s-6);
+  }
+
+  .lrow__num,
+  .lrow__name,
+  .lrow__desc,
+  .lrow__to {
+    grid-column: auto;
+  }
+
+  .lrow__num {
+    grid-row: 1;
+  }
+
+  .lrow__desc,
+  .lrow__to {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  /* C: label above each lane, the trace full width. */
+  .lane {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--s-5);
+    min-height: 0;
+    padding-top: var(--s-4);
+    padding-bottom: var(--s-6);
+  }
+
+  .lane__label,
+  .lane__track {
+    grid-column: 1;
+  }
+
+  .lane__desc {
+    display: none;
+  }
+
+  /* The trace passes behind each lane's name rather than through it. */
+  .lane__label {
+    position: relative;
+    z-index: 1;
+    justify-self: start;
+    padding-right: var(--s-3);
+    background: var(--bg);
+  }
+
+  .trace__svg text {
+    display: none;
+  }
+
+  .trace__foot {
+    flex-wrap: wrap;
+  }
+
+  .trace__keys {
+    order: 3;
+    width: 100%;
+  }
+
+  /* D: text then figure. */
+  .stack {
+    --tab: 48px;
+  }
+
+  .plate {
+    height: max(560px, calc(100svh - 3 * var(--tab)));
+  }
+
+  .plate__tab > :nth-child(2) {
+    grid-column: 2 / span 7;
+  }
+
+  .plate__tab .plate__count {
+    grid-column: 9 / span 4;
+  }
+
+  .plate__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-6);
+    padding: var(--s-5) 0 var(--s-6);
+  }
+
+  .plate__to {
+    margin-top: 0;
+  }
+
+  .plate__fig {
+    flex: 1;
+  }
+}

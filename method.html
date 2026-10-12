@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NEXUS — Method, layout studies</title>
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 fill=%22%23000%22/%3E%3Cpath d=%22M9 23V9h2l10 11V9h2v14h-2L11 12v11z%22 fill=%22%23f0f0ec%22/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  </head>
+  <body class="lab">
+    <main class="site">
+      <header class="lab-head">
+        <a class="lab-head__brand" href="./">NEXUS</a>
+        <h1 class="display-l lab-head__title">Method — four layout studies</h1>
+        <p class="support lab-head__note">Same four stages, same feedback paths, same type and frame as the live site. Only the composition changes.</p>
+        <nav class="lab-head__index" aria-label="Studies">
+          <a href="#a"><span>A</span> Cycle</a>
+          <a href="#b"><span>B</span> Ledger</a>
+          <a href="#c"><span>C</span> Trace</a>
+          <a href="#d"><span>D</span> Stack</a>
+        </nav>
+      </header>
+
+      <!-- ===================================================== STUDY A — CYCLE -->
+      <div class="lab-label" id="a">
+        <p class="label"><span class="label__num">A</span> / CYCLE</p>
+        <p class="caption">The section holds while a dial turns through the four stages. The loop closes on Refine; Evaluate cuts back to Experiment.</p>
+      </div>
+      <section class="mcyc" aria-labelledby="a-title">
+        <div class="mcyc__pin">
+          <div class="sec__head">
+            <p class="label"><span class="label__num">04</span> / METHOD</p>
+          </div>
+          <div class="mcyc__body">
+            <div class="mcyc__side">
+              <div class="mcyc__intro">
+                <h2 class="display-l" id="a-title">Research is a process of revision.</h2>
+                <p class="support mcyc__support">Every finding creates another question. Every assumption must withstand scrutiny.</p>
+              </div>
+              <div class="mcyc__readout" aria-live="polite">
+                <span class="label mcyc__meta">Stage <span data-cyc-num>01</span> / 04</span>
+                <ol class="mcyc__stages" role="list">
+                  <li class="mcyc__stage is-active"><span class="mcyc__name">Investigate</span><span class="support mcyc__desc">Define the question.</span><span class="label mcyc__next">→ 02 Experiment</span></li>
+                  <li class="mcyc__stage"><span class="mcyc__name">Experiment</span><span class="support mcyc__desc">Test the hypothesis.</span><span class="label mcyc__next">→ 03 Evaluate</span></li>
+                  <li class="mcyc__stage"><span class="mcyc__name">Evaluate</span><span class="support mcyc__desc">Examine the evidence.</span><span class="label mcyc__next">→ 04 Refine <em>↺ 02 Experiment</em></span></li>
+                  <li class="mcyc__stage"><span class="mcyc__name">Refine</span><span class="support mcyc__desc">Revise what we know.</span><span class="label mcyc__next"><em>↺ 01 Investigate</em></span></li>
+                </ol>
+              </div>
+            </div>
+            <div class="mcyc__dial">
+              <svg class="mcyc__svg" viewBox="0 0 100 100" aria-hidden="true">
+                <defs>
+                  <marker id="cyc-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                    <path d="M1 1 7 4 1 7" />
+                  </marker>
+                </defs>
+                <g class="mcyc__ticks"></g>
+                <path class="mcyc__seg" data-seg="0" d="M50 14 A36 36 0 0 1 86 50" />
+                <path class="mcyc__seg" data-seg="1" d="M86 50 A36 36 0 0 1 50 86" />
+                <path class="mcyc__seg" data-seg="2" d="M50 86 A36 36 0 0 1 14 50" />
+                <path class="mcyc__seg is-feedback" data-seg="3" d="M14 50 A36 36 0 0 1 50 14" />
+                <path class="mcyc__chord is-feedback" d="M50 84.4 C52 70 68 57 84.3 51.7" marker-end="url(#cyc-arrow)" />
+                <circle class="mcyc__progress" cx="50" cy="50" r="36" pathLength="100" transform="rotate(-90 50 50)" />
+                <rect class="mcyc__head" x="-1.4" y="-1.4" width="2.8" height="2.8" />
+              </svg>
+              <div class="mcyc__centre" aria-hidden="true">
+                <span class="mcyc__deg" data-cyc-deg>000°</span>
+                <span class="caption">Revision</span>
+              </div>
+              <button class="mcyc__station is-active" type="button" data-station="0" style="--x: 50%; --y: 14%"><span class="mcyc__lab"><span>01</span> Investigate</span></button>
+              <button class="mcyc__station" type="button" data-station="1" style="--x: 86%; --y: 50%"><span class="mcyc__lab"><span>02</span> Experiment</span></button>
+              <button class="mcyc__station" type="button" data-station="2" style="--x: 50%; --y: 86%"><span class="mcyc__lab"><span>03</span> Evaluate</span></button>
+              <button class="mcyc__station" type="button" data-station="3" style="--x: 14%; --y: 50%"><span class="mcyc__lab"><span>04</span> Refine</span></button>
+            </div>
+          </div>
+          <p class="caption mcyc__legend" aria-hidden="true">
+            <span class="mkey"></span> Sequence
+            <span class="mkey mkey--dashed"></span> Feedback — new evidence returns the work to an earlier stage
+          </p>
+        </div>
+      </section>
+
+      <!-- ===================================================== STUDY B — LEDGER -->
+      <div class="lab-label" id="b">
+        <p class="label"><span class="label__num">B</span> / LEDGER</p>
+        <p class="caption">The method as an editorial index. Return paths run in the margin; hovering a stage traces where it leads.</p>
+      </div>
+      <section class="sec mled" aria-labelledby="b-title">
+        <div class="sec__head">
+          <p class="label"><span class="label__num">04</span> / METHOD</p>
+        </div>
+        <div class="sec-intro grid">
+          <h2 class="display-l sec-intro__title" id="b-title">Research is a process of revision.</h2>
+          <p class="support sec-intro__text">Every finding creates another question. Every assumption must withstand scrutiny.</p>
+        </div>
+        <div class="ledger">
+          <div class="ledger__cols caption" aria-hidden="true">
+            <span>No.</span><span>Stage</span><span>Action</span><span>Leads to</span>
+          </div>
+          <svg class="ledger__returns" aria-hidden="true">
+            <defs>
+              <marker id="led-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M1 1 7 4 1 7" />
+              </marker>
+            </defs>
+          </svg>
+          <ol class="ledger__rows" role="list">
+            <li class="lrow" tabindex="0" data-row="0">
+              <span class="lrow__num">01</span>
+              <span class="lrow__name">Investigate</span>
+              <span class="support lrow__desc">Define the question.</span>
+              <span class="label lrow__to">→ 02</span>
+            </li>
+            <li class="lrow" tabindex="0" data-row="1">
+              <span class="lrow__num">02</span>
+              <span class="lrow__name">Experiment</span>
+              <span class="support lrow__desc">Test the hypothesis.</span>
+              <span class="label lrow__to">→ 03</span>
+            </li>
+            <li class="lrow" tabindex="0" data-row="2" data-return="1">
+              <span class="lrow__num">03</span>
+              <span class="lrow__name">Evaluate</span>
+              <span class="support lrow__desc">Examine the evidence.</span>
+              <span class="label lrow__to">→ 04 <em>↺ 02</em></span>
+            </li>
+            <li class="lrow" tabindex="0" data-row="3" data-return="0">
+              <span class="lrow__num">04</span>
+              <span class="lrow__name">Refine</span>
+              <span class="support lrow__desc">Revise what we know.</span>
+              <span class="label lrow__to"><em>↺ 01</em></span>
+            </li>
+          </ol>
+          <p class="caption ledger__legend" aria-hidden="true">
+            <span class="mkey mkey--dashed"></span> ↺ Feedback — new evidence returns the work to an earlier stage
+          </p>
+        </div>
+      </section>
+
+      <!-- ===================================================== STUDY C — TRACE -->
+      <div class="lab-label" id="c">
+        <p class="label"><span class="label__num">C</span> / TRACE</p>
+        <p class="caption">One line of work drawn across four lanes as you scroll. It moves forward, and twice the evidence sends it back.</p>
+      </div>
+      <section class="sec mtr" aria-labelledby="c-title">
+        <div class="sec__head">
+          <p class="label"><span class="label__num">04</span> / METHOD</p>
+        </div>
+        <div class="sec-intro grid">
+          <h2 class="display-l sec-intro__title" id="c-title">Research is a process of revision.</h2>
+          <p class="support sec-intro__text">Every finding creates another question. Every assumption must withstand scrutiny.</p>
+        </div>
+        <div class="trace">
+          <svg class="trace__svg" aria-hidden="true">
+            <defs>
+              <marker id="tr-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M1 1 7 4 1 7" />
+              </marker>
+            </defs>
+          </svg>
+          <ol class="trace__lanes" role="list">
+            <li class="lane" data-lane="0">
+              <div class="lane__label"><span class="lane__num">01</span><span class="lane__name">Investigate</span><span class="lane__desc">Define the question.</span></div>
+              <div class="lane__track"></div>
+            </li>
+            <li class="lane" data-lane="1">
+              <div class="lane__label"><span class="lane__num">02</span><span class="lane__name">Experiment</span><span class="lane__desc">Test the hypothesis.</span></div>
+              <div class="lane__track"></div>
+            </li>
+            <li class="lane" data-lane="2">
+              <div class="lane__label"><span class="lane__num">03</span><span class="lane__name">Evaluate</span><span class="lane__desc">Examine the evidence.</span></div>
+              <div class="lane__track"></div>
+            </li>
+            <li class="lane" data-lane="3">
+              <div class="lane__label"><span class="lane__num">04</span><span class="lane__name">Refine</span><span class="lane__desc">Revise what we know.</span></div>
+              <div class="lane__track"></div>
+            </li>
+          </ol>
+          <div class="trace__foot caption" aria-hidden="true">
+            <span>Fig. 4 — conceptual</span>
+            <span class="trace__keys"><span class="mkey"></span> Sequence <span class="mkey mkey--dashed"></span> Feedback</span>
+            <span>Time →</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================== STUDY D — STACK -->
+      <div class="lab-label" id="d">
+        <p class="label"><span class="label__num">D</span> / STACK</p>
+        <p class="caption">Each stage is a plate that slides over the last and leaves its index tab behind, each with its own conceptual figure.</p>
+      </div>
+      <section class="sec mstk" aria-labelledby="d-title">
+        <div class="sec__head">
+          <p class="label"><span class="label__num">04</span> / METHOD</p>
+        </div>
+        <div class="sec-intro grid">
+          <h2 class="display-l sec-intro__title" id="d-title">Research is a process of revision.</h2>
+          <p class="support sec-intro__text">Every finding creates another question. Every assumption must withstand scrutiny.</p>
+        </div>
+        <ol class="stack" role="list">
+          <li class="plate" style="--i: 0">
+            <div class="plate__tab label"><span class="label__num">01</span><span>Investigate</span><span class="plate__count">01 / 04</span></div>
+            <div class="plate__body">
+              <div class="plate__text">
+                <h3 class="plate__name">Investigate</h3>
+                <p class="support">Define the question.</p>
+                <p class="label plate__to">Leads to → 02 Experiment</p>
+              </div>
+              <figure class="plate__fig">
+                <canvas data-fig="investigate" aria-hidden="true"></canvas>
+                <figcaption class="caption">Fig. 4.1 — conceptual</figcaption>
+              </figure>
+            </div>
+          </li>
+          <li class="plate" style="--i: 1">
+            <div class="plate__tab label"><span class="label__num">02</span><span>Experiment</span><span class="plate__count">02 / 04</span></div>
+            <div class="plate__body">
+              <div class="plate__text">
+                <h3 class="plate__name">Experiment</h3>
+                <p class="support">Test the hypothesis.</p>
+                <p class="label plate__to">Leads to → 03 Evaluate</p>
+              </div>
+              <figure class="plate__fig">
+                <canvas data-fig="experiment" aria-hidden="true"></canvas>
+                <figcaption class="caption">Fig. 4.2 — conceptual</figcaption>
+              </figure>
+            </div>
+          </li>
+          <li class="plate" style="--i: 2">
+            <div class="plate__tab label"><span class="label__num">03</span><span>Evaluate</span><span class="plate__count">03 / 04</span></div>
+            <div class="plate__body">
+              <div class="plate__text">
+                <h3 class="plate__name">Evaluate</h3>
+                <p class="support">Examine the evidence.</p>
+                <p class="label plate__to">Leads to → 04 Refine <em>↺ returns to 02 Experiment</em></p>
+              </div>
+              <figure class="plate__fig">
+                <canvas data-fig="evaluate" aria-hidden="true"></canvas>
+                <figcaption class="caption">Fig. 4.3 — conceptual</figcaption>
+              </figure>
+            </div>
+          </li>
+          <li class="plate" style="--i: 3">
+            <div class="plate__tab label"><span class="label__num">04</span><span>Refine</span><span class="plate__count">04 / 04</span></div>
+            <div class="plate__body">
+              <div class="plate__text">
+                <h3 class="plate__name">Refine</h3>
+                <p class="support">Revise what we know.</p>
+                <p class="label plate__to"><em>↺ Returns to 01 Investigate</em></p>
+              </div>
+              <figure class="plate__fig">
+                <canvas data-fig="refine" aria-hidden="true"></canvas>
+                <figcaption class="caption">Fig. 4.4 — conceptual</figcaption>
+              </figure>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <footer class="lab-foot">
+        <a class="link" href="./">← Back to the NEXUS site</a>
+      </footer>
+    </main>
+    <script type="module" src="/src/lab/method.ts"></script>
+  </body>
+</html>
