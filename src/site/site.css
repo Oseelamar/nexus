@@ -951,23 +951,24 @@ a:hover > .arrow {
     --tab: 48px;
   }
 
-  /* On phones the pinned frame holds only the plates: the heading stays in
-     the document for assistive tech but leaves the screen to the stages. */
-  .mstack .sec__head {
-    margin-bottom: 0;
+  /* On phones the heading scrolls away first: the pin sticks only once the
+     plates reach the top of the screen, so they get all of it. --lead (set
+     by stack.ts) is the height of everything above the plates. */
+  .mstack {
+    height: calc(100svh + var(--lead, 0px) + 3.4 * 75svh);
   }
 
-  .mstack:not(.is-static) .sec-intro {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip-path: inset(50%);
-    white-space: nowrap;
+  .mstack__pin {
+    top: calc(-1 * var(--lead, 0px));
+    height: calc(100svh + var(--lead, 0px));
+  }
+
+  .mstack .sec__head {
+    margin-bottom: var(--s-6);
   }
 
   .stack {
-    margin-top: var(--s-6);
+    margin-top: var(--s-7);
   }
 
   .plate__body {

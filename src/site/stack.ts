@@ -183,7 +183,17 @@ export function initStack(reduced: boolean) {
     it.fig(it.ctx, it.w, it.h, t);
   };
 
+  // On phones the heading scrolls off before the plates pin, so the plates
+  // get the whole screen. `lead` is everything above the plates in the pin.
+  const narrow = matchMedia('(max-width: 700px)');
+  let lead = 0;
+  const measure = () => {
+    lead = narrow.matches && !reduced ? Math.round(stack.offsetTop) : 0;
+    section.style.setProperty('--lead', `${lead}px`);
+  };
+
   const size = () => {
+    measure();
     const dpr = Math.min(2, devicePixelRatio || 1);
     items.forEach((it) => {
       const r = it.canvas.getBoundingClientRect();
@@ -207,8 +217,9 @@ export function initStack(reduced: boolean) {
       return;
     }
     const rect = section.getBoundingClientRect();
-    const travel = section.offsetHeight - innerHeight;
-    const beat = (travel > 0 ? Math.min(1, Math.max(0, -rect.top / travel)) : 0) * BEATS;
+    // The pin sticks once the section has scrolled by `lead` (phones only).
+    const travel = section.offsetHeight - innerHeight - lead;
+    const beat = (travel > 0 ? Math.min(1, Math.max(0, (-rect.top - lead) / travel)) : 0) * BEATS;
     const stageH = stack.clientHeight;
     const tab = parseFloat(getComputedStyle(section).getPropertyValue('--tab')) || 0;
     const arrive = items.map((_, k) => (k === 0 ? 1 : smooth(beat - (k - 1))));
