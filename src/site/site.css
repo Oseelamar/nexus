@@ -870,7 +870,7 @@ a:hover > .arrow {
   column-gap: var(--gutter);
   height: 100%;
   /* Centres the heading's first line on the strip, beside the number. */
-  padding: calc((var(--tab) - var(--fs-statement)) / 2) 0 var(--s-6);
+  padding: calc((var(--tab) - var(--fs-title) * 1.15) / 2) 0 var(--s-6);
   box-sizing: border-box;
 }
 
@@ -878,16 +878,17 @@ a:hover > .arrow {
   grid-column: 2 / span 4;
   display: flex;
   flex-direction: column;
-  gap: var(--s-4);
+  gap: var(--s-2);
 }
 
+/* A step below the section heading: the same size as the research titles. */
 .plate__name {
-  margin: 0 0 var(--s-2);
+  margin: 0;
   font-family: 'Overused Grotesk', sans-serif;
   font-weight: 500;
-  font-size: var(--fs-statement);
-  line-height: 1;
-  letter-spacing: -0.03em;
+  font-size: var(--fs-title);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
   color: var(--ink);
 }
 
@@ -912,7 +913,7 @@ a:hover > .arrow {
   flex-direction: column;
   min-height: 0;
   /* Starts below the strip, clear of the plate count. */
-  margin: calc(var(--tab) + var(--s-2) - (var(--tab) - var(--fs-statement)) / 2) 0 0;
+  margin: calc(var(--tab) + var(--s-2) - (var(--tab) - var(--fs-title) * 1.15) / 2) 0 0;
 }
 
 .plate__fig canvas {
@@ -977,14 +978,6 @@ a:hover > .arrow {
     gap: var(--s-4);
     padding-left: 32px;
     padding-bottom: var(--s-4);
-  }
-
-  .plate__text {
-    gap: var(--s-2);
-  }
-
-  .plate__name {
-    margin-bottom: 0;
   }
 
   .plate__to {
