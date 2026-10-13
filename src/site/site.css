@@ -960,12 +960,19 @@ a:hover > .arrow {
     --tab: 48px;
   }
 
+  /* On phones the pinned frame holds only the plates: the heading stays in
+     the document for assistive tech but leaves the screen to the stages. */
   .mstack .sec__head {
-    margin-bottom: var(--s-5);
+    margin-bottom: 0;
   }
 
-  .mstack .sec-intro {
-    row-gap: var(--s-3);
+  .mstack:not(.is-static) .sec-intro {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
 
   .stack {
@@ -975,13 +982,17 @@ a:hover > .arrow {
   .plate__body {
     display: flex;
     flex-direction: column;
-    gap: var(--s-4);
+    gap: var(--s-7);
     padding-left: 32px;
-    padding-bottom: var(--s-4);
+    padding-bottom: var(--s-6);
+  }
+
+  .plate__text {
+    gap: var(--s-3);
   }
 
   .plate__to {
-    margin-top: var(--s-1);
+    margin-top: var(--s-3);
   }
 
   .plate__fig {
