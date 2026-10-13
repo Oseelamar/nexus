@@ -849,7 +849,7 @@ a:hover > .arrow {
     linear-gradient(var(--ink), var(--ink)) calc(100% - 6px) 0 / 1px 13px no-repeat;
 }
 
-/* The strip that stays visible once a plate is covered: number and count. */
+/* The strip that stays visible once a plate is covered: the stage number. */
 .plate__strip {
   position: absolute;
   left: calc(var(--inset) - 1px);
@@ -861,10 +861,6 @@ a:hover > .arrow {
   justify-content: space-between;
 }
 
-.plate__count {
-  color: var(--dim);
-  font-variant-numeric: tabular-nums;
-}
 
 .plate__body {
   display: grid;
