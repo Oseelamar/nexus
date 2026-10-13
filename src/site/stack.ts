@@ -166,14 +166,22 @@ const FIGS: Record<string, Fig> = {
 };
 
 export function initStack(reduced: boolean) {
-  const section = document.querySelector<HTMLElement>('.stack');
-  if (!section) return;
-  if (reduced) section.classList.add('is-static');
-  const plates = [...section.querySelectorAll<HTMLElement>('.plate')];
-  const items = plates.map((plate) => {
+  const section = document.querySelector<HTMLElement>('.mstack');
+  const stack = section?.querySelector<HTMLElement>('.stack');
+  if (!section || !stack) return;
+  const items = [...stack.querySelectorAll<HTMLElement>('.plate')].map((plate) => {
     const canvas = plate.querySelector<HTMLCanvasElement>('canvas')!;
-    return { plate, canvas, ctx: canvas.getContext('2d')!, fig: FIGS[canvas.dataset.fig!], t: -1, w: 0, h: 0 };
+    const body = plate.querySelector<HTMLElement>('.plate__body')!;
+    return { plate, body, canvas, ctx: canvas.getContext('2d')!, fig: FIGS[canvas.dataset.fig!], t: -1, w: 0, h: 0 };
   });
+  const n = items.length;
+
+  const paint = (it: (typeof items)[number], t: number) => {
+    if (!it.w || Math.abs(t - it.t) < 0.002) return;
+    it.t = t;
+    it.ctx.clearRect(0, 0, it.w, it.h);
+    it.fig(it.ctx, it.w, it.h, t);
+  };
 
   const size = () => {
     const dpr = Math.min(2, devicePixelRatio || 1);
@@ -189,19 +197,36 @@ export function initStack(reduced: boolean) {
     frame();
   };
 
+  // Scroll is split into beats: plate k arrives over beat k - 1 → k, with a
+  // short hold at the end before the section releases.
+  const BEATS = n - 1 + 0.4;
+
   const frame = () => {
-    items.forEach((it) => {
-      const stick = parseFloat(getComputedStyle(it.plate).top) || 0;
-      const top = it.plate.getBoundingClientRect().top;
-      const t = reduced ? 1 : smooth((innerHeight - top) / Math.max(1, innerHeight - stick) * 1.15 - 0.1);
-      if (Math.abs(t - it.t) < 0.002 || !it.w) return;
-      it.t = t;
-      it.ctx.clearRect(0, 0, it.w, it.h);
-      it.fig(it.ctx, it.w, it.h, t);
+    if (reduced) {
+      items.forEach((it) => paint(it, 1));
+      return;
+    }
+    const rect = section.getBoundingClientRect();
+    const travel = section.offsetHeight - innerHeight;
+    const beat = (travel > 0 ? Math.min(1, Math.max(0, -rect.top / travel)) : 0) * BEATS;
+    const stageH = stack.clientHeight;
+    const tab = items.length > 1 ? (stageH - items[0].plate.offsetHeight) / (n - 1) : 0;
+    const arrive = items.map((_, k) => (k === 0 ? 1 : smooth(beat - (k - 1))));
+
+    items.forEach((it, k) => {
+      const y = k === 0 ? 0 : stageH + 8 - (stageH + 8 - k * tab) * arrive[k];
+      it.plate.style.transform = `translate3d(0, ${y.toFixed(2)}px, 0)`;
+      // Covered by the next plate: the content fades, leaving the strip.
+      const cover = k < n - 1 ? smooth(arrive[k + 1] * 1.6 - 0.2) : 0;
+      it.body.style.opacity = String(1 - cover);
+      // The first figure settles as the section scrolls into view.
+      const t = k === 0 ? smooth((innerHeight - rect.top) / innerHeight - 0.15) : smooth(arrive[k] * 1.2 - 0.1);
+      paint(it, t);
     });
   };
 
-  new ResizeObserver(size).observe(section);
+  if (reduced) section.classList.add('is-static');
+  new ResizeObserver(size).observe(stack);
   document.fonts?.ready.then(size);
   let queued = false;
   const queue = () => {

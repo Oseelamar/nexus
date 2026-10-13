@@ -775,60 +775,68 @@ a:hover > .arrow {
 }
 
 /* ---------------------------------------------------- 04 method ---------- */
-/* Each stage is a plate that slides over the last and leaves its index tab
-   behind, with a conceptual dot figure that settles as the plate arrives. */
+/* The section pins with its heading in frame. The four stage plates stack in
+   the space below it: each slides up over the last, whose content fades away
+   to leave a numbered strip. Each plate carries a conceptual dot figure that
+   settles as it arrives. */
 
-.plate__to em {
-  font-style: normal;
-  color: var(--accent);
+.mstack {
+  --tab: 64px;
+  height: calc(100svh + 3.4 * 75svh);
+  padding-bottom: 0;
 }
 
-/* Each plate sticks one tab-height lower than the one before it, so the
-   earlier plates leave their index tabs showing above the current one. */
+.mstack__pin {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: var(--s-6);
+}
+
+.mstack .sec__head {
+  margin-bottom: var(--s-7);
+}
 
 .stack {
-  --tab: 60px;
-  margin: var(--s-9) calc(1px - var(--inset)) 0;
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  margin: var(--s-7) calc(1px - var(--inset)) 0;
   padding: 0;
   list-style: none;
+  /* Hide plates waiting below, but let the "+" marks overhang the frame. */
+  clip-path: inset(-8px -12px 0 -12px);
 }
 
 .plate {
-  position: sticky;
-  top: calc(var(--i) * var(--tab));
-  height: max(520px, calc(100svh - 3 * var(--tab)));
-  display: flex;
-  flex-direction: column;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: calc(100% - 3 * var(--tab));
   padding-inline: calc(var(--inset) - 1px);
   background: var(--bg);
+  will-change: transform;
 }
 
-.plate__tab {
-  position: relative;
-  flex: none;
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: var(--gutter);
-  align-items: center;
-  height: var(--tab);
-}
-
-.plate__tab::before {
+/* Rule across the frame, with "+" marks where it meets the frame lines. */
+.plate::before {
   content: '';
   position: absolute;
-  left: calc(1px - var(--inset));
-  right: calc(1px - var(--inset));
+  left: 0;
+  right: 0;
   top: 0;
   height: 1px;
   background: var(--line-strong);
 }
 
-/* "+" registration marks where the plate's rule meets the frame. */
-.plate__tab::after {
+.plate::after {
   content: '';
   position: absolute;
-  left: calc(-6px - var(--inset));
-  right: calc(-6px - var(--inset));
+  left: -7px;
+  right: -7px;
   top: -6px;
   height: 13px;
   pointer-events: none;
@@ -839,29 +847,31 @@ a:hover > .arrow {
     linear-gradient(var(--ink), var(--ink)) calc(100% - 6px) 0 / 1px 13px no-repeat;
 }
 
-.plate__tab > :nth-child(1) {
-  grid-column: 1;
+/* The strip that stays visible once a plate is covered: number and count. */
+.plate__strip {
+  position: absolute;
+  left: calc(var(--inset) - 1px);
+  right: calc(var(--inset) - 1px);
+  top: 0;
+  height: var(--tab);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.plate__tab > :nth-child(2) {
-  grid-column: 2 / span 6;
-  color: var(--ink);
-}
-
-.plate__tab .plate__count {
-  grid-column: 11 / span 2;
-  justify-self: end;
+.plate__count {
   color: var(--dim);
   font-variant-numeric: tabular-nums;
 }
 
 .plate__body {
-  flex: 1;
-  min-height: 0;
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: var(--gutter);
-  padding: var(--s-7) 0 var(--s-8);
+  height: 100%;
+  /* Centres the heading's first line on the strip, beside the number. */
+  padding: calc((var(--tab) - var(--fs-statement)) / 2) 0 var(--s-6);
+  box-sizing: border-box;
 }
 
 .plate__text {
@@ -888,6 +898,8 @@ a:hover > .arrow {
 .plate__to em {
   display: block;
   margin-top: var(--s-2);
+  font-style: normal;
+  color: var(--accent);
 }
 
 .plate__to em:first-child {
@@ -899,7 +911,8 @@ a:hover > .arrow {
   display: flex;
   flex-direction: column;
   min-height: 0;
-  margin: 0;
+  /* Starts below the strip, clear of the plate count. */
+  margin: calc(var(--tab) + var(--s-2) - (var(--tab) - var(--fs-statement)) / 2) 0 0;
 }
 
 .plate__fig canvas {
@@ -915,9 +928,77 @@ a:hover > .arrow {
   border-top: 1px solid var(--line);
 }
 
-.stack.is-static .plate {
+/* Reduced motion: no pin; the plates sit one after another. */
+.mstack.is-static {
+  height: auto;
+  padding-bottom: var(--section-gap);
+}
+
+.mstack.is-static .mstack__pin {
   position: relative;
-  top: auto;
+  height: auto;
+}
+
+.mstack.is-static .stack {
+  clip-path: none;
+}
+
+.mstack.is-static .plate {
+  position: relative;
+  height: 520px;
+}
+
+@media (max-width: 1100px) {
+  .plate__text {
+    grid-column: 1 / span 5;
+  }
+}
+
+@media (max-width: 700px) {
+  .mstack {
+    --tab: 48px;
+  }
+
+  .mstack .sec__head {
+    margin-bottom: var(--s-5);
+  }
+
+  .mstack .sec-intro {
+    row-gap: var(--s-3);
+  }
+
+  .stack {
+    margin-top: var(--s-6);
+  }
+
+  .plate__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-4);
+    padding-left: 32px;
+    padding-bottom: var(--s-4);
+  }
+
+  .plate__text {
+    gap: var(--s-2);
+  }
+
+  .plate__name {
+    margin-bottom: 0;
+  }
+
+  .plate__to {
+    margin-top: var(--s-1);
+  }
+
+  .plate__fig {
+    flex: 1;
+    margin-top: 0;
+  }
+
+  .mstack.is-static .plate {
+    height: 560px;
+  }
 }
 
 /* ---------------------------------------------------- 05 connect --------- */
@@ -1175,9 +1256,6 @@ a:hover > .arrow {
   .spot__stage {
     grid-column: 7 / span 6;
   }
-  .plate__text {
-    grid-column: 1 / span 5;
-  }
   .paths {
     grid-template-columns: 1fr 1fr;
   }
@@ -1257,36 +1335,6 @@ a:hover > .arrow {
   }
   .spot__numeral {
     font-size: 180px;
-  }
-  .stack {
-    --tab: 48px;
-  }
-
-  .plate {
-    height: max(560px, calc(100svh - 3 * var(--tab)));
-  }
-
-  .plate__tab > :nth-child(2) {
-    grid-column: 2 / span 7;
-  }
-
-  .plate__tab .plate__count {
-    grid-column: 9 / span 4;
-  }
-
-  .plate__body {
-    display: flex;
-    flex-direction: column;
-    gap: var(--s-6);
-    padding: var(--s-5) 0 var(--s-6);
-  }
-
-  .plate__to {
-    margin-top: 0;
-  }
-
-  .plate__fig {
-    flex: 1;
   }
   .paths {
     grid-template-columns: minmax(0, 1fr);
