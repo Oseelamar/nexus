@@ -210,7 +210,7 @@ export function initStack(reduced: boolean) {
     const travel = section.offsetHeight - innerHeight;
     const beat = (travel > 0 ? Math.min(1, Math.max(0, -rect.top / travel)) : 0) * BEATS;
     const stageH = stack.clientHeight;
-    const tab = items.length > 1 ? (stageH - items[0].plate.offsetHeight) / (n - 1) : 0;
+    const tab = parseFloat(getComputedStyle(section).getPropertyValue('--tab')) || 0;
     const arrive = items.map((_, k) => (k === 0 ? 1 : smooth(beat - (k - 1))));
 
     items.forEach((it, k) => {

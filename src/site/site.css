@@ -815,7 +815,9 @@ a:hover > .arrow {
   left: 0;
   right: 0;
   top: 0;
-  height: calc(100% - 3 * var(--tab));
+  /* Each plate runs from where it comes to rest down to the bottom of the
+     frame, so the newest plate always has the full remaining height. */
+  height: calc(100% - var(--i) * var(--tab));
   padding-inline: calc(var(--inset) - 1px);
   background: var(--bg);
   will-change: transform;
@@ -881,6 +883,11 @@ a:hover > .arrow {
   gap: var(--s-2);
 }
 
+/* One step down from the section's supporting text. */
+.plate__text .support {
+  font-size: calc(var(--fs-support) - 2px);
+}
+
 /* A step below the section heading: the same size as the research titles. */
 .plate__name {
   margin: 0;
@@ -892,20 +899,8 @@ a:hover > .arrow {
   color: var(--ink);
 }
 
-.plate__to {
-  margin-top: auto;
-}
 
-.plate__to em {
-  display: block;
-  margin-top: var(--s-2);
-  font-style: normal;
-  color: var(--accent);
-}
 
-.plate__to em:first-child {
-  margin-top: 0;
-}
 
 .plate__fig {
   grid-column: 7 / span 6;
@@ -991,9 +986,6 @@ a:hover > .arrow {
     gap: var(--s-3);
   }
 
-  .plate__to {
-    margin-top: var(--s-3);
-  }
 
   .plate__fig {
     flex: 1;
